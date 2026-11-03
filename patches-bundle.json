@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-11-03T18:42:37",
-  "description": "## 1.0.0 (2026-11-03)\n\n### ✨ New Features\n\n* Loki Patches ([93c0a0f](https://github.com/lokesh-sparrow/loki-patches/commit/93c0a0ff03b8d9aed7369268bd6bab9742809949))",
+  "created_at": "2026-11-03T18:53:43",
+  "description": "## 1.0.0 (2026-11-03)\n\n### ✨ New Features\n\n* Loki Patches ([11d174a](https://github.com/lokesh-sparrow/loki-patches/commit/11d174a7a7fb5ec0edc2190d4d49e7295c39a97e))",
   "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.0.0/patches-1.0.0.mpp",
   "signature_download_url": "",
   "version": "1.0.0"
