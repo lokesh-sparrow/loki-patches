@@ -1,3 +1,15 @@
+## [1.1.0-dev.4](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-11-03)
+
+### 🐛 Bug Fixes
+
+* **LinkedIn:** Copy text overlay, long posts, scrolling and dialog buttons ([ebca8fe](https://github.com/lokesh-sparrow/loki-patches/commit/ebca8fe9433352ee2eae3aea76b4910a0aacaff0))
+
+### ✨ New Features
+
+* **LinkedIn:** Keep feed on reopen, muted words, Full text button ([6513e1d](https://github.com/lokesh-sparrow/loki-patches/commit/6513e1dad41833f9a3736e33e2ae61a6e84432f8))
+* **LinkedIn:** Post menu items ([9dba08a](https://github.com/lokesh-sparrow/loki-patches/commit/9dba08ab3c55a0defd5f78f0448832584ff88a75))
+* **LinkedIn:** Switch for long posts in a sheet ([1a3656e](https://github.com/lokesh-sparrow/loki-patches/commit/1a3656ee81bd4ae797d58f174f393beec53e8037))
+
 ## [1.1.0-dev.3](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-11-03)
 
 ### 🐛 Bug Fixes
