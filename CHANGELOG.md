@@ -1,3 +1,9 @@
+## [1.1.0-dev.2](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-03)
+
+### 🐛 Bug Fixes
+
+* **LinkedIn:** Copy text lines up with the post ([00ec22f](https://github.com/lokesh-sparrow/loki-patches/commit/00ec22fdcd5ecc1005c15ecd303a246d9d45d16b))
+
 ## [1.1.0-dev.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-11-03)
 
 ### ✨ New Features
