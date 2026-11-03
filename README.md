@@ -1,19 +1,13 @@
+<p align="center">
+  <img src=".github/assets/header.jpg" alt="Loki Patches: No Ads. No Clutter. Open-source Morphe patches" width="100%">
+</p>
+
 <div align="center">
 
-<br/>
-
-<img src=".github/assets/logo.svg" alt="Loki Patches logo" width="140" />
-
-# Loki Patches
-
-### LinkedIn without ads and clutter, and copy any text
-
-<br/>
-
-[![Latest release](https://img.shields.io/github/v/release/lokesh-sparrow/loki-patches?style=for-the-badge&labelColor=0d1117&color=d4a12a&label=release)](https://github.com/lokesh-sparrow/loki-patches/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/lokesh-sparrow/loki-patches/total?style=for-the-badge&labelColor=0d1117&color=14714f)](https://github.com/lokesh-sparrow/loki-patches/releases)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-4.1.1261-0a66c2?style=for-the-badge&labelColor=0d1117)](#patches)
-[![Morphe](https://img.shields.io/badge/patches%20for-Morphe-4da9a9?style=for-the-badge&labelColor=0d1117)](https://morphe.software)
+[![Latest release](https://img.shields.io/github/v/release/lokesh-sparrow/loki-patches?style=for-the-badge&labelColor=0d1117&color=22d3ee&label=release)](https://github.com/lokesh-sparrow/loki-patches/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/lokesh-sparrow/loki-patches/total?style=for-the-badge&labelColor=0d1117&color=0ea5e9)](https://github.com/lokesh-sparrow/loki-patches/releases)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-4.1.1261-2563eb?style=for-the-badge&labelColor=0d1117)](#patches)
+[![Morphe](https://img.shields.io/badge/patches%20for-Morphe-06b6d4?style=for-the-badge&labelColor=0d1117)](https://morphe.software)
 [![License](https://img.shields.io/github/license/lokesh-sparrow/loki-patches?style=for-the-badge&labelColor=0d1117&color=6e7681)](LICENSE)
 
 <br/>
