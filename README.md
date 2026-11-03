@@ -16,7 +16,9 @@
 
 <br/>
 
-<a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches"><img src=".github/assets/add-to-morphe.svg" alt="Add to Morphe" height="55"/></a>
+<a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches/tree/dev&name=Loki%20Patches"><img src=".github/assets/add-to-morphe.svg" alt="Add to Morphe" height="55"/></a>
+
+<sub>Always the newest build. Prefer only stable releases? <a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches">Add the stable source</a>.</sub>
 
 </div>
 
@@ -57,8 +59,9 @@ A tap or a scroll works as usual.
 
 You need an Android phone and [Morphe Manager](https://morphe.software).
 
-1. In Morphe Manager, **[add the Loki Patches source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches)**
-   (or add `https://github.com/lokesh-sparrow/loki-patches` by hand).
+1. In Morphe Manager, **[add the Loki Patches source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches/tree/dev&name=Loki%20Patches)**
+   (or add `https://github.com/lokesh-sparrow/loki-patches/tree/dev` by hand). It always gets the newest build;
+   for stable releases only, use [the stable source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches) or `https://github.com/lokesh-sparrow/loki-patches`.
 2. Choose **LinkedIn**, and download the version Morphe Manager recommends from APKMirror. Use the
    *Android 10+* variant: the APK, not the bundle.
 3. Patch it and install it.
