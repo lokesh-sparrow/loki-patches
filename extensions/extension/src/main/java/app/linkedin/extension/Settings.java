@@ -41,6 +41,7 @@ public final class Settings {
     static final String BLOCK_TRACKING = "block_tracking";
     static final String DISABLE_DOUBLE_TAP_LIKE = "disable_double_tap_like";
     static final String COPY_TEXT = "copy_text";
+    static final String COPY_TEXT_LONG_SHEET = "copy_text_long_sheet";
     static final String REMOVE_GAPS_AND_DIVIDERS = "remove_gaps_and_dividers";
     static final String MATERIAL_YOU = "material_you";
     static final String AMOLED_BLACK = "amoled_black";
@@ -149,6 +150,11 @@ public final class Settings {
 
     static boolean copyText() {
         return isCopyTextIncluded() && get(COPY_TEXT, true);
+    }
+
+    /** Long posts open in a scrollable sheet instead of being selected in place. */
+    static boolean copyTextLongInSheet() {
+        return get(COPY_TEXT_LONG_SHEET, true);
     }
 
     // region Backup

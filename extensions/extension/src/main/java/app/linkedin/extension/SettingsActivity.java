@@ -158,6 +158,8 @@ public final class SettingsActivity extends Activity {
             if (Settings.isCopyTextIncluded()) {
                 feed.toggle(Settings.COPY_TEXT, true, "Copy text",
                         "Long press a post, comment, or any text to select and copy it, like on Reddit.");
+                feed.toggle(Settings.COPY_TEXT_LONG_SHEET, true, "Long posts in a sheet",
+                        "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.");
             }
             if (Settings.isShowFullTextIncluded()) {
                 feed.toggle(Settings.SHOW_FULL_TEXT, true, "Show full posts",

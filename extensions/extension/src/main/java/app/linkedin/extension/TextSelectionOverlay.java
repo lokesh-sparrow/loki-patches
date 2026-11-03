@@ -96,7 +96,10 @@ final class TextSelectionOverlay {
         Activity activity = activity(composeView.getContext());
         if (activity == null || activity.isFinishing()) return false;
         Layout layout = layout(provider, id, info, text);
-        if (layout == null || layout.truncated || layout.lineTops.size() > MAX_OVERLAY_LINES) return false;
+        if (layout == null) return false;
+        if (Settings.copyTextLongInSheet() && (layout.truncated || layout.lineTops.size() > MAX_OVERLAY_LINES)) {
+            return false;
+        }
         int start = layout.display.length() == 0 ? -1 : displayIndexAt(layout, rawX, rawY);
         if (start < 0) return false;
         Rect bounds = new Rect();
