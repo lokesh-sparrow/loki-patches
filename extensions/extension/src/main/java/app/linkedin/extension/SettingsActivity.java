@@ -787,8 +787,6 @@ public final class SettingsActivity extends Activity {
         LinearLayout box = cardBox("Credits", I18n.f("The people and projects behind %1$s.", BRAND));
         box.addView(creditCard(IconDrawable.PEOPLE, AUTHOR, I18n.f("Creator of %1$s", BRAND),
                 "github.com/lokesh-sparrow", "https://github.com/lokesh-sparrow"));
-        box.addView(creditCard(IconDrawable.CODE, "Michii Patches", I18n.f("Based on %1$s", "Michii Patches"),
-                "github.com/heyymichii/michii-patches", "https://github.com/heyymichii/michii-patches"));
         box.addView(creditCard(IconDrawable.CODE, "Morphe", "Patcher, Morphe Manager, and the patch template",
                 "morphe.software", MORPHE_WEBSITE));
         box.addView(creditCard(IconDrawable.INFO, "LinkedIn",
