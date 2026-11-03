@@ -149,7 +149,7 @@ public final class SettingsActivity extends Activity {
         }
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
-                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded()) {
+                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded() || Settings.isKeepFeedIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -160,6 +160,10 @@ public final class SettingsActivity extends Activity {
                         "Long press a post, comment, or any text to select and copy it, like on Reddit.");
                 feed.toggle(Settings.COPY_TEXT_LONG_SHEET, true, "Long posts in a sheet",
                         "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.");
+            }
+            if (Settings.isKeepFeedIncluded()) {
+                feed.toggle(Settings.KEEP_FEED, true, "Keep feed on reopen",
+                        "Stay where you were when you come back. Pull down or tap \"New posts\" for new posts.");
             }
             if (Settings.isShowFullTextIncluded()) {
                 feed.toggle(Settings.SHOW_FULL_TEXT, true, "Show full posts",
@@ -185,7 +189,22 @@ public final class SettingsActivity extends Activity {
                         .toggle(Settings.HIDE_TRANSLATION, false, "Hide \"See translation\"",
                                 "The translate button below posts in other languages.")
                         .toggle(Settings.HIDE_AI, false, "Hide AI suggestions",
-                                "AI prompts, suggestions, and assistant cards. Experimental.");
+                                "AI prompts, suggestions, and assistant cards. Experimental.")
+                        .value("Muted words", new ValueRow() {
+                            public String currentValue() {
+                                String words = Settings.mutedWords().trim();
+                                return words.isEmpty() ? I18n.tr("Posts with these words or phrases are hidden.")
+                                        : words.replace("\n", ", ");
+                            }
+
+                            public Runnable onClick() {
+                                return SettingsActivity.this::editMutedWords;
+                            }
+
+                            public boolean enabled() {
+                                return true;
+                            }
+                        });
             }
             categories.add(feed);
         }
@@ -367,6 +386,11 @@ public final class SettingsActivity extends Activity {
             button.setAllCaps(false);
             button.setTypeface(Typeface.DEFAULT_BOLD);
         }
+    }
+
+    private AlertDialog tint(AlertDialog dialog) {
+        tintButtons(dialog, this);
+        return dialog;
     }
 
     static void open(Context context) {
@@ -763,6 +787,7 @@ public final class SettingsActivity extends Activity {
                 {"Disable double-tap like", Settings.isDisableDoubleTapLikeIncluded()},
                 {"Copy text", Settings.isCopyTextIncluded()},
                 {"Show full posts", Settings.isShowFullTextIncluded()},
+                {"Keep feed on reopen", Settings.isKeepFeedIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},
@@ -955,7 +980,7 @@ public final class SettingsActivity extends Activity {
 
     private void chooseLanguage() {
         String[] codes = languageCodes();
-        new AlertDialog.Builder(this, dialogTheme())
+        tint(new AlertDialog.Builder(this, dialogTheme())
                 .setTitle(I18n.tr("Language"))
                 .setSingleChoiceItems(languageNames(), languageIndex(), (dialog, which) -> {
                     Settings.setString(Settings.LANGUAGE, codes[which]);
@@ -964,7 +989,7 @@ public final class SettingsActivity extends Activity {
                     recreate();
                 })
                 .setNegativeButton(I18n.tr("Cancel"), null)
-                .show();
+                .show());
     }
 
     // endregion
@@ -996,6 +1021,29 @@ public final class SettingsActivity extends Activity {
         }
     }
 
+    private void editMutedWords() {
+        EditText input = new EditText(this);
+        input.setHint(I18n.tr("One word or phrase per line, for example:\nthrilled to announce\nhiring"));
+        input.setMinLines(4);
+        input.setGravity(Gravity.TOP);
+        input.setText(Settings.mutedWords());
+        LinearLayout box = new LinearLayout(this);
+        box.setPadding(dp(24), dp(8), dp(24), 0);
+        box.addView(input, matchWidth());
+
+        tint(new AlertDialog.Builder(this, dialogTheme())
+                .setTitle(I18n.tr("Muted words"))
+                .setMessage(I18n.tr("Posts containing any of these, as whole words, are hidden from your feed. "
+                        + "Upper and lower case don't matter."))
+                .setView(box)
+                .setPositiveButton(I18n.tr("Save"), (dialog, which) -> {
+                    Settings.setMutedWords(input.getText().toString().trim());
+                    refresh();
+                })
+                .setNegativeButton(I18n.tr("Cancel"), null)
+                .show());
+    }
+
     private void importSettings() {
         EditText input = new EditText(this);
         input.setHint(I18n.tr("Paste a settings backup here"));
@@ -1010,7 +1058,7 @@ public final class SettingsActivity extends Activity {
         box.setPadding(dp(24), dp(8), dp(24), 0);
         box.addView(input, matchWidth());
 
-        new AlertDialog.Builder(this, dialogTheme())
+        tint(new AlertDialog.Builder(this, dialogTheme())
                 .setTitle(I18n.tr("Import settings"))
                 .setView(box)
                 .setPositiveButton(I18n.tr("Import"), (dialog, which) -> {
@@ -1024,11 +1072,11 @@ public final class SettingsActivity extends Activity {
                     }
                 })
                 .setNegativeButton(I18n.tr("Cancel"), null)
-                .show();
+                .show());
     }
 
     private void resetSettings() {
-        new AlertDialog.Builder(this, dialogTheme())
+        tint(new AlertDialog.Builder(this, dialogTheme())
                 .setTitle(I18n.tr("Reset to defaults?"))
                 .setMessage(I18n.f("All %1$s settings will be reset, including the download location.", BRAND))
                 .setPositiveButton(I18n.tr("Reset"), (dialog, which) -> {
@@ -1038,7 +1086,7 @@ public final class SettingsActivity extends Activity {
                     showRestartBanner();
                 })
                 .setNegativeButton(I18n.tr("Cancel"), null)
-                .show();
+                .show());
     }
 
     // endregion
@@ -1051,7 +1099,7 @@ public final class SettingsActivity extends Activity {
         int checked = 0;
         for (int i = 0; i < dirs.length; i++) if (dirs[i].equals(current)) checked = i;
 
-        new AlertDialog.Builder(this, dialogTheme())
+        tint(new AlertDialog.Builder(this, dialogTheme())
                 .setTitle(I18n.tr("Main folder"))
                 .setSingleChoiceItems(dirs, checked, (dialog, which) -> {
                     Settings.setString(Settings.DOWNLOAD_BASE_DIR, dirs[which]);
@@ -1059,7 +1107,7 @@ public final class SettingsActivity extends Activity {
                     dialog.dismiss();
                 })
                 .setNegativeButton(I18n.tr("Cancel"), null)
-                .show();
+                .show());
     }
 
     private void editFolder() {
@@ -1080,7 +1128,7 @@ public final class SettingsActivity extends Activity {
         box.addView(input);
         box.addView(help);
 
-        new AlertDialog.Builder(this, dialogTheme())
+        tint(new AlertDialog.Builder(this, dialogTheme())
                 .setTitle(I18n.tr("Subfolder name"))
                 .setView(box)
                 .setPositiveButton(I18n.tr("Save"), (dialog, which) -> {
@@ -1092,7 +1140,7 @@ public final class SettingsActivity extends Activity {
                     refresh();
                 })
                 .setNegativeButton(I18n.tr("Cancel"), null)
-                .show();
+                .show());
     }
 
     // endregion

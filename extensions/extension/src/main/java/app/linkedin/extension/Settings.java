@@ -34,6 +34,8 @@ public final class Settings {
     static final String HIDE_TRANSLATION = "hide_translation";
     static final String HIDE_AI = "hide_ai";
     static final String SHOW_FULL_TEXT = "show_full_text";
+    static final String KEEP_FEED = "keep_feed";
+    static final String MUTED_WORDS = "muted_words";
     static final String ANONYMOUS_PROFILE_VIEWING = "anonymous_profile_viewing";
     static final String OPEN_LINKS_DIRECTLY = "open_links_directly";
     static final String HIDE_SPONSORED_MESSAGES = "hide_sponsored_messages";
@@ -274,8 +276,25 @@ public final class Settings {
         return isFeedFiltersIncluded() && get(HIDE_TRANSLATION, false);
     }
 
+    /** Words and phrases whose posts are hidden, one per line. */
+    static String mutedWords() {
+        return isFeedFiltersIncluded() ? getString(MUTED_WORDS, "") : "";
+    }
+
+    static void setMutedWords(String words) {
+        setString(MUTED_WORDS, words);
+    }
+
     static boolean hideAi() {
         return isFeedFiltersIncluded() && get(HIDE_AI, false);
+    }
+
+    public static boolean isKeepFeedIncluded() {
+        return false;
+    }
+
+    static boolean keepFeed() {
+        return isKeepFeedIncluded() && get(KEEP_FEED, true);
     }
 
     public static boolean isShowFullTextIncluded() {

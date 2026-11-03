@@ -111,8 +111,9 @@ public final class SduiComponentFilter {
         boolean recommendations = Settings.hideRecommendations();
         boolean videos = Settings.hideVideoPosts();
         boolean shortLinks = Settings.resolveShortLinks();
+        java.util.regex.Pattern muted = mutedPattern();
         if (!ads && !suggested && !celebrations && !jobs && !reposts && !activity && !recommendations && !videos
-                && !shortLinks) {
+                && !shortLinks && muted == null) {
             return false;
         }
 
@@ -145,6 +146,12 @@ public final class SduiComponentFilter {
         }
         if (activity && !recommendationModule && isActivityPost(payload)) {
             return hide(true, "post from someone's activity");
+        }
+        if (muted != null) {
+            for (String s : ProtoScanner.scan(payload).strings) {
+                java.util.regex.Matcher m = muted.matcher(s);
+                if (m.find()) return hide(true, "muted word: " + m.group());
+            }
         }
         // The header label is its own string field, so match the whole string, never a substring
         // of post text.
@@ -207,6 +214,27 @@ public final class SduiComponentFilter {
             if (Proto.is(item, "hasSponsoredData")) return true;
         }
         return false;
+    }
+
+    private static String mutedSource;
+    private static java.util.regex.Pattern mutedCompiled;
+
+    /** The muted words as one pattern of whole words and phrases, ignoring case; null when there are none. */
+    private static java.util.regex.Pattern mutedPattern() {
+        String words = Settings.mutedWords();
+        if (words.equals(mutedSource)) return mutedCompiled;
+        StringBuilder alternatives = new StringBuilder();
+        for (String line : words.split("[\\n,]")) {
+            String word = line.trim();
+            if (word.isEmpty()) continue;
+            if (alternatives.length() > 0) alternatives.append('|');
+            alternatives.append(java.util.regex.Pattern.quote(word));
+        }
+        mutedCompiled = alternatives.length() == 0 ? null : java.util.regex.Pattern.compile(
+                "(?<![\\p{L}\\p{N}])(?:" + alternatives + ")(?![\\p{L}\\p{N}])",
+                java.util.regex.Pattern.CASE_INSENSITIVE | java.util.regex.Pattern.UNICODE_CASE);
+        mutedSource = words;
+        return mutedCompiled;
     }
 
     private static void collectMedia(Object component, String source) {

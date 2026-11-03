@@ -57,6 +57,7 @@ import java.util.Map;
  */
 final class TextSelectionOverlay {
     private static final int MENU_COPY_FULL = 0x46414B48;
+    private static final int MENU_FULL_TEXT = 0x46414B49;
     /** Longer text, or text that continues off screen or behind "...more", opens in the scrollable sheet. */
     private static final int MAX_OVERLAY_LINES = 8;
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());
@@ -506,6 +507,8 @@ final class TextSelectionOverlay {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 if (layout.truncated) menu.add(Menu.NONE, MENU_COPY_FULL, 200, I18n.tr("Copy full text"));
+                // The whole text in the scrollable sheet, to select all of it or any part.
+                menu.add(Menu.NONE, MENU_FULL_TEXT, 201, I18n.tr("Full text"));
                 return true;
             }
 
@@ -519,6 +522,11 @@ final class TextSelectionOverlay {
                 int id = item.getItemId();
                 if (id == android.R.id.copy) {
                     copy(activity, selectedText(layout, textView));
+                } else if (id == MENU_FULL_TEXT) {
+                    mode.finish();
+                    dismiss.run();
+                    CopyTextPatch.show(activity, layout.fullText);
+                    return true;
                 } else if (id == MENU_COPY_FULL) {
                     copy(activity, layout.fullText);
                 } else if (id == android.R.id.shareText) {

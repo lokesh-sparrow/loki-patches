@@ -166,5 +166,12 @@
   "Anonymous profile viewing": "Anonymous profile viewing",
   "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.": "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.",
   "Long posts in a sheet": "Long posts in a sheet",
-  "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.": "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text."
+  "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.": "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.",
+  "Full text": "Full text",
+  "Keep feed on reopen": "Keep feed on reopen",
+  "Stay where you were when you come back. Pull down or tap \"New posts\" for new posts.": "Stay where you were when you come back. Pull down or tap \"New posts\" for new posts.",
+  "Muted words": "Muted words",
+  "Posts with these words or phrases are hidden.": "Posts with these words or phrases are hidden.",
+  "One word or phrase per line, for example:\nthrilled to announce\nhiring": "One word or phrase per line, for example:\nthrilled to announce\nhiring",
+  "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter.": "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter."
 }
