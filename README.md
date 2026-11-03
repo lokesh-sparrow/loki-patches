@@ -81,9 +81,9 @@ also search the options, back up and restore them, check for updates and pick th
 ## Patches
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v1.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+> **[v1.1.0-dev.1](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v1.1.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;17 patches total
 <details open>
-<summary><img src="assets/icons/com.linkedin.android.svg" width="20" height="20" align="top" alt=""> LinkedIn&nbsp;&nbsp;•&nbsp;&nbsp;15 patches</summary>
+<summary><img src="assets/icons/com.linkedin.android.svg" width="20" height="20" align="top" alt=""> LinkedIn&nbsp;&nbsp;•&nbsp;&nbsp;17 patches</summary>
 <br>
 
 **🎯 Supported versions:**
@@ -93,10 +93,11 @@ also search the options, back up and restore them, check for updates and pick th
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
+| [Anonymous profile viewing](#anonymous-profile-viewing) | Adds an option (off by default, experimental) to visit profiles without sending the profile view event, while you keep seeing who viewed your own profile. |  |
 | [Block tracking](#block-tracking) | Adds an option (off by default) to stop sending most LinkedIn analytics events. |  |
 | [Copy text](#copy-text) | Long press a post, comment or any other text to select and copy it in place, like on Reddit. |  |
 | [Disable double-tap like](#disable-double-tap-like) | Stops double tapping a post or photo from liking it. |  |
-| [Download media](#download-media) | Adds a download button to the full screen photo and video viewer. |  |
+| [Download media](#download-media) | Adds a download button to the full screen photo, video and document viewer. Documents (PDFs and carousels) are saved as one PDF. |  |
 | [Feed filters](#feed-filters) | Adds optional filters (off by default, turned on in Loki Patches): focus mode, celebrations, job cards, reposts, posts from others' activity, "Recommended for you", video posts, games, the "New posts" pill and "See translation". |  |
 | [GmsCore support](#gmscore-support) | Makes "Continue with Google" work in patched LinkedIn by signing in through microG RE (GmsCore) instead of Google Play services. Needs microG RE installed and signed in to a Google account. |  |
 | [Hide Premium upsells](#hide-premium-upsells) | Removes Premium and AI upsell cards and banners, including on profiles and the Me panel. |  |
@@ -108,6 +109,7 @@ also search the options, back up and restore them, check for updates and pick th
 | [Open links directly](#open-links-directly) | Opens external links without LinkedIn's safety/go warning page. |  |
 | [Remove gaps and dividers](#remove-gaps-and-dividers) | Removes the gray gaps between posts and the dividers between list items, so the feed and lists are one flat surface. |  |
 | [Sanitize share links](#sanitize-share-links) | Removes tracking parameters from LinkedIn links when they are copied or shared. |  |
+| [Show full posts](#show-full-posts) | Shows the whole text of posts and comments instead of cutting it off with "...more". |  |
 
 </details>
 

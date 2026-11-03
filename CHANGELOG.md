@@ -1,3 +1,9 @@
+## [1.1.0-dev.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-11-03)
+
+### ✨ New Features
+
+* **LinkedIn:** Documents as PDF, Show full posts, Anonymous profile viewing, Hide AI suggestions ([5c8ead1](https://github.com/lokesh-sparrow/loki-patches/commit/5c8ead11ce7c3ff44c416dc4de72c923472e8d2e))
+
 ## 1.0.0 (2026-11-03)
 
 ### ✨ New Features
