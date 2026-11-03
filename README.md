@@ -31,9 +31,12 @@
 | | |
 |---|---|
 | ✂️ **Copy text** | Long press any post, comment or profile text to select and copy it, right where it is |
+| 📖 **Show full posts** | The whole text of posts and comments, without "…more" |
 | 🚫 **No ads** | Promoted posts, promoted jobs, Premium and AI upsells, sponsored messages |
-| ⬇️ **Downloads** | Photos and videos in full screen, profile photos and banners, in the best quality |
-| 🧹 **Feed filters** | Focus mode, and hide suggested posts, celebrations, job cards, network activity, videos and more |
+| ⬇️ **Downloads** | Photos and videos in full screen (one or **all** of a post), profile photos and banners, in the best quality |
+| 📄 **Documents as PDF** | Save a post's document or carousel as one PDF file |
+| 🧹 **Feed filters** | Focus mode, and hide suggested posts, celebrations, job cards, network activity, videos, AI suggestions and more |
+| 🕵️ **Anonymous profile viewing** | Visit profiles without showing up in their "Who viewed your profile", while you keep seeing yours (experimental) |
 | 👻 **Ghost mode** | Chat without the typing indicator or automatic read receipts |
 | 🔗 **Clean links** | Open outside links directly, strip tracking from links you share |
 | 🛡️ **Block tracking** | Stop most of LinkedIn's analytics |
@@ -111,6 +114,14 @@ also search the options, back up and restore them, check for updates and pick th
 <!-- PATCHES_END -->
 
 ## FAQ
+
+**How do I stop videos playing on their own, or hide that I'm online?**
+LinkedIn has its own settings for both, and Loki Patches leaves them to LinkedIn: **Settings → Account preferences →
+Autoplay videos → Never**, and **Settings → Visibility → Manage active status → No one**.
+
+**Is anonymous profile viewing reliable?**
+It's experimental. It stops the app from reporting your visit, and LinkedIn records profile views from that report,
+but the server could also count a visit on its own. If someone still sees you, please report it.
 
 **I can't find the Loki Patches settings.**
 The app icon shortcut appears after LinkedIn has been opened once, and some launchers don't show it, so use

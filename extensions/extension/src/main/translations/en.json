@@ -154,5 +154,16 @@
   "Copied": "Copied",
   "Copy full text": "Copy full text",
   "The first release of Loki Patches.\n\n• Copy text: long press a post, comment, or any text to select and copy it, like on Reddit\n• Hide ads, promoted jobs, suggested posts, and Premium promotions\n• Download photos and videos, feed filters, ghost mode in chat, and more\n\nOpen the settings from the Me panel → Loki Patches, or long press the LinkedIn icon → Loki Patches.": "The first release of Loki Patches.\n\n• Copy text: long press a post, comment, or any text to select and copy it, like on Reddit\n• Hide ads, promoted jobs, suggested posts, and Premium promotions\n• Download photos and videos, feed filters, ghost mode in chat, and more\n\nOpen the settings from the Me panel → Loki Patches, or long press the LinkedIn icon → Loki Patches.",
-  "Based on %1$s": "Based on %1$s"
+  "Based on %1$s": "Based on %1$s",
+  "Saving the document…": "Saving the document…",
+  "Document saved to %1$s": "Document saved to %1$s",
+  "Couldn't save the document": "Couldn't save the document",
+  "Document as PDF (%1$s pages)": "Document as PDF (%1$s pages)",
+  "Photos and videos": "Photos and videos",
+  "Show full posts": "Show full posts",
+  "Show the whole text of posts and comments, without \"...more\".": "Show the whole text of posts and comments, without \"...more\".",
+  "Hide AI suggestions": "Hide AI suggestions",
+  "AI prompts, suggestions, and assistant cards. Experimental.": "AI prompts, suggestions, and assistant cards. Experimental.",
+  "Anonymous profile viewing": "Anonymous profile viewing",
+  "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.": "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental."
 }

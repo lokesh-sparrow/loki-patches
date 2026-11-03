@@ -30,6 +30,17 @@ public final class SduiComponentFilter {
         if (loggedViewNames.add(viewName)) Settings.debugLog("view " + viewName);
     }
 
+    private static final java.util.Set<String> AI_WORDS = new java.util.HashSet<>(java.util.Arrays.asList(
+            "ai", "genai", "gai", "llm", "copilot", "assistant", "aigc"));
+
+    /** AI prompts and assistant cards, recognized by a whole word of the view name (feed-ai-prompt, genai-...). */
+    private static boolean isAiView(String viewName) {
+        for (String word : viewName.split("[-_.]")) {
+            if (AI_WORDS.contains(word)) return true;
+        }
+        return false;
+    }
+
     /** Components of LinkedIn's puzzle games: search cards (search-game-card-queens), the hub (games-sdui-hub). */
     private static boolean isGameView(String viewName) {
         return viewName.startsWith("games-") || viewName.startsWith("game-") || viewName.contains("-game-")
@@ -43,6 +54,9 @@ public final class SduiComponentFilter {
             String viewName = Proto.string(viewTracking, "getViewName");
             String screenName = Proto.string(component, "getObservabilityViewName");
             logViewName(viewName);
+            if (Settings.hideAi() && isAiView(viewName)) {
+                return hide(true, "ai: " + viewName);
+            }
             if (Settings.hideGames() && isGameView(viewName)) {
                 return hide(true, "games: " + viewName);
             }

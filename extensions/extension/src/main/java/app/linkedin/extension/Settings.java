@@ -32,6 +32,9 @@ public final class Settings {
     static final String HIDE_GAMES = "hide_games";
     static final String HIDE_NEW_POSTS_PILL = "hide_new_posts_pill";
     static final String HIDE_TRANSLATION = "hide_translation";
+    static final String HIDE_AI = "hide_ai";
+    static final String SHOW_FULL_TEXT = "show_full_text";
+    static final String ANONYMOUS_PROFILE_VIEWING = "anonymous_profile_viewing";
     static final String OPEN_LINKS_DIRECTLY = "open_links_directly";
     static final String HIDE_SPONSORED_MESSAGES = "hide_sponsored_messages";
     static final String GHOST_MODE = "ghost_mode";
@@ -263,6 +266,26 @@ public final class Settings {
 
     static boolean hideTranslation() {
         return isFeedFiltersIncluded() && get(HIDE_TRANSLATION, false);
+    }
+
+    static boolean hideAi() {
+        return isFeedFiltersIncluded() && get(HIDE_AI, false);
+    }
+
+    public static boolean isShowFullTextIncluded() {
+        return false;
+    }
+
+    static boolean showFullText() {
+        return isShowFullTextIncluded() && get(SHOW_FULL_TEXT, true);
+    }
+
+    public static boolean isAnonymousProfileViewingIncluded() {
+        return false;
+    }
+
+    static boolean anonymousProfileViewing() {
+        return isAnonymousProfileViewingIncluded() && get(ANONYMOUS_PROFILE_VIEWING, false);
     }
 
     static boolean hideAds() {

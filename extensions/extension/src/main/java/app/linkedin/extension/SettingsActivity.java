@@ -149,7 +149,7 @@ public final class SettingsActivity extends Activity {
         }
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
-                || Settings.isCopyTextIncluded()) {
+                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -158,6 +158,10 @@ public final class SettingsActivity extends Activity {
             if (Settings.isCopyTextIncluded()) {
                 feed.toggle(Settings.COPY_TEXT, true, "Copy text",
                         "Long press a post, comment, or any text to select and copy it, like on Reddit.");
+            }
+            if (Settings.isShowFullTextIncluded()) {
+                feed.toggle(Settings.SHOW_FULL_TEXT, true, "Show full posts",
+                        "Show the whole text of posts and comments, without \"...more\".");
             }
             if (Settings.isFeedFiltersIncluded()) {
                 feed.toggle(Settings.FOCUS_MODE, false, "Focus mode", "Hide like, comment, and repost counts.")
@@ -177,7 +181,9 @@ public final class SettingsActivity extends Activity {
                         .toggle(Settings.HIDE_NEW_POSTS_PILL, false, "Hide the \"New posts\" button",
                                 "The pill that appears at the top of the feed.")
                         .toggle(Settings.HIDE_TRANSLATION, false, "Hide \"See translation\"",
-                                "The translate button below posts in other languages.");
+                                "The translate button below posts in other languages.")
+                        .toggle(Settings.HIDE_AI, false, "Hide AI suggestions",
+                                "AI prompts, suggestions, and assistant cards. Experimental.");
             }
             categories.add(feed);
         }
@@ -262,7 +268,7 @@ public final class SettingsActivity extends Activity {
         }
 
         if (Settings.isOpenLinksDirectlyIncluded() || Settings.isBlockTrackingIncluded()
-                || Settings.isSanitizeShareLinksIncluded()) {
+                || Settings.isSanitizeShareLinksIncluded() || Settings.isAnonymousProfileViewingIncluded()) {
             Category privacy = new Category("Privacy", IconDrawable.SHIELD);
             if (Settings.isOpenLinksDirectlyIncluded()) {
                 privacy.toggle(Settings.OPEN_LINKS_DIRECTLY, true, "Open links directly",
@@ -273,6 +279,10 @@ public final class SettingsActivity extends Activity {
             if (Settings.isSanitizeShareLinksIncluded()) {
                 privacy.toggle(Settings.SANITIZE_SHARE_LINKS, true, "Clean share links",
                         "Remove tracking parameters (utm, trk, rcm, ...) when copying or sharing LinkedIn links.");
+            }
+            if (Settings.isAnonymousProfileViewingIncluded()) {
+                privacy.toggle(Settings.ANONYMOUS_PROFILE_VIEWING, false, "Anonymous profile viewing",
+                        "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.");
             }
             if (Settings.isBlockTrackingIncluded()) {
                 privacy.toggle(Settings.BLOCK_TRACKING, false, "Block tracking",
@@ -735,6 +745,8 @@ public final class SettingsActivity extends Activity {
                 {"Feed filters", Settings.isFeedFiltersIncluded()},
                 {"Disable double-tap like", Settings.isDisableDoubleTapLikeIncluded()},
                 {"Copy text", Settings.isCopyTextIncluded()},
+                {"Show full posts", Settings.isShowFullTextIncluded()},
+                {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},
                 {"Open links directly", Settings.isOpenLinksDirectlyIncluded()},
