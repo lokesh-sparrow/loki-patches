@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.PixelCopy;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -310,6 +311,8 @@ final class TextSelectionOverlay {
             window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             window.setWindowAnimations(0);
             window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            window.setGravity(Gravity.TOP | Gravity.START);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) window.setDecorFitsSystemWindows(false);
         }
 
         FrameLayout root = new FrameLayout(activity);
@@ -391,11 +394,22 @@ final class TextSelectionOverlay {
         dialog.show();
 
         // Place the text over the original once the window knows where it is on screen.
-        root.post(() -> {
-            int[] origin = new int[2];
+        // Android can still move the dialog window after its first layout (insets, edge to edge), so the text is
+        // placed again whenever the window lays out, from where the window really is on screen. It stays
+        // invisible until then, so it never shows in the wrong place.
+        textView.setAlpha(0f);
+        int[] origin = new int[2];
+        ViewTreeObserver.OnGlobalLayoutListener place = () -> {
             root.getLocationOnScreen(origin);
-            textView.setX(layout.left - origin[0]);
-            textView.setY(layout.top - origin[1]);
+            float x = layout.left - origin[0];
+            float y = layout.top - origin[1];
+            if (textView.getX() != x) textView.setX(x);
+            if (textView.getY() != y) textView.setY(y);
+        };
+        root.getViewTreeObserver().addOnGlobalLayoutListener(place);
+        root.post(() -> {
+            place.onGlobalLayout();
+            textView.setAlpha(1f);
             textView.post(() -> selectWord(textView, start));
         });
     }
