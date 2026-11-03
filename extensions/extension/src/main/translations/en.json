@@ -173,5 +173,12 @@
   "Muted words": "Muted words",
   "Posts with these words or phrases are hidden.": "Posts with these words or phrases are hidden.",
   "One word or phrase per line, for example:\nthrilled to announce\nhiring": "One word or phrase per line, for example:\nthrilled to announce\nhiring",
-  "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter.": "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter."
+  "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter.": "Posts containing any of these, as whole words, are hidden from your feed. Upper and lower case don't matter.",
+  "Post menu items": "Post menu items",
+  "Copy text, Download photos and videos, and Save document as PDF in the ⋯ menu of posts.": "Copy text, Download photos and videos, and Save document as PDF in the ⋯ menu of posts.",
+  "Download photos and videos": "Download photos and videos",
+  "Save document as PDF": "Save document as PDF",
+  "Scroll to the post again, then try once more": "Scroll to the post again, then try once more",
+  "This post has no text": "This post has no text",
+  "Open the document once, then try again": "Open the document once, then try again"
 }

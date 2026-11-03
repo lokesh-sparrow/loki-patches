@@ -35,6 +35,7 @@ public final class Settings {
     static final String HIDE_AI = "hide_ai";
     static final String SHOW_FULL_TEXT = "show_full_text";
     static final String KEEP_FEED = "keep_feed";
+    static final String POST_MENU = "post_menu";
     static final String MUTED_WORDS = "muted_words";
     static final String ANONYMOUS_PROFILE_VIEWING = "anonymous_profile_viewing";
     static final String OPEN_LINKS_DIRECTLY = "open_links_directly";
@@ -287,6 +288,15 @@ public final class Settings {
 
     static boolean hideAi() {
         return isFeedFiltersIncluded() && get(HIDE_AI, false);
+    }
+
+    public static boolean isPostMenuIncluded() {
+        return false;
+    }
+
+    /** Copy text, Download and Save as PDF in the ⋯ menu of posts. */
+    static boolean postMenu() {
+        return isPostMenuIncluded() && get(POST_MENU, true);
     }
 
     public static boolean isKeepFeedIncluded() {

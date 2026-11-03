@@ -30,6 +30,21 @@ public final class SduiComponentFilter {
         if (loggedViewNames.add(viewName)) Settings.debugLog("view " + viewName);
     }
 
+    /** Components whose structure goes into the diagnostic report once, to build features on them. */
+    private static final java.util.Set<String> CAPTURE = new java.util.HashSet<>(java.util.Arrays.asList(
+            "feed-tabs-list", "feed-for-you-feed", "feed-network-feed-pill"));
+    private static final java.util.Set<String> captured = ConcurrentHashMap.newKeySet();
+
+    private static void captureStructure(String viewName, Object component) {
+        if (!Settings.debug() || !CAPTURE.contains(viewName) || !captured.add(viewName)) return;
+        byte[] bytes = payload(component);
+        if (bytes == null) return;
+        // Hex bytes with spaces: the diagnostic report removes anything that looks like an id or a token.
+        StringBuilder hex = new StringBuilder();
+        for (int i = 0; i < Math.min(bytes.length, 1500); i++) hex.append(String.format("%02x ", bytes[i] & 0xFF));
+        Settings.debugLog("structure " + viewName + " (" + bytes.length + " bytes): " + hex);
+    }
+
     private static final java.util.Set<String> AI_WORDS = new java.util.HashSet<>(java.util.Arrays.asList(
             "ai", "genai", "gai", "llm", "copilot", "assistant", "aigc"));
 
@@ -47,6 +62,12 @@ public final class SduiComponentFilter {
                 || viewName.endsWith("-game") || viewName.endsWith("-games");
     }
 
+    /** Called with every SDUI component before shouldHide; returns it, or an edited copy (the post ⋯ menu). */
+    public static Object rewrite(Object component) {
+        if (!Settings.postMenu()) return component;
+        return PostMenu.inject(component, payload(component));
+    }
+
     public static boolean shouldHide(Object component) {
         try {
             Object viewTracking = Proto.is(component, "hasViewTracking")
@@ -54,6 +75,7 @@ public final class SduiComponentFilter {
             String viewName = Proto.string(viewTracking, "getViewName");
             String screenName = Proto.string(component, "getObservabilityViewName");
             logViewName(viewName);
+            captureStructure(viewName, component);
             if (Settings.hideAi() && isAiView(viewName)) {
                 return hide(true, "ai: " + viewName);
             }
@@ -63,6 +85,7 @@ public final class SduiComponentFilter {
 
             switch (viewName) {
                 case "feed-full-update":
+                    if (Settings.postMenu()) PostMenu.remember(payload(component));
                     return hideFeedUpdate(component, viewTracking);
                 case "job-card":
                     return hidePromotedJob(component);

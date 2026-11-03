@@ -149,7 +149,8 @@ public final class SettingsActivity extends Activity {
         }
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
-                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded() || Settings.isKeepFeedIncluded()) {
+                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded() || Settings.isKeepFeedIncluded()
+                || Settings.isPostMenuIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -160,6 +161,10 @@ public final class SettingsActivity extends Activity {
                         "Long press a post, comment, or any text to select and copy it, like on Reddit.");
                 feed.toggle(Settings.COPY_TEXT_LONG_SHEET, true, "Long posts in a sheet",
                         "Long posts open in a scrollable sheet with the whole text. Off: selected in place like short text.");
+            }
+            if (Settings.isPostMenuIncluded()) {
+                feed.toggle(Settings.POST_MENU, true, "Post menu items",
+                        "Copy text, Download photos and videos, and Save document as PDF in the ⋯ menu of posts.");
             }
             if (Settings.isKeepFeedIncluded()) {
                 feed.toggle(Settings.KEEP_FEED, true, "Keep feed on reopen",
@@ -788,6 +793,7 @@ public final class SettingsActivity extends Activity {
                 {"Copy text", Settings.isCopyTextIncluded()},
                 {"Show full posts", Settings.isShowFullTextIncluded()},
                 {"Keep feed on reopen", Settings.isKeepFeedIncluded()},
+                {"Post menu items", Settings.isPostMenuIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},

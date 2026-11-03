@@ -75,7 +75,20 @@ public final class DocumentPdf {
         }
     }
 
+    private static final java.util.Map<String, Doc> byId = java.util.Collections.synchronizedMap(
+            new java.util.LinkedHashMap<String, Doc>(32, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(java.util.Map.Entry<String, Doc> eldest) {
+                    return size() > 100;
+                }
+            });
+
     private DocumentPdf() {
+    }
+
+    /** A document seen in the feed or the viewer, by the id of its asset URN. */
+    static Doc byId(String id) {
+        return byId.get(id);
     }
 
     /**
@@ -84,8 +97,11 @@ public final class DocumentPdf {
      */
     public static void onDocument(Object documentAsset, Object source, int navigablePages, boolean fullScreen) {
         try {
-            if (!fullScreen || source == null || !Settings.downloadMedia()) return;
+            if (source == null) return;
+            if (!fullScreen && !Settings.postMenu()) return;
             Doc doc = read(source, navigablePages);
+            if (doc != null) byId.put(doc.id, doc);
+            if (!fullScreen || !Settings.downloadMedia()) return;
             Settings.debugLog("document: root=" + (doc == null ? null : doc.rootUrl)
                     + " slices=" + (doc == null ? 0 : doc.slices.size())
                     + " original=" + (doc != null && doc.downloadSuffix != null));
