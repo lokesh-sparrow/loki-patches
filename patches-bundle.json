@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-03T20:35:05",
-  "description": "## [1.1.0-dev.2](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-11-03)\n\n### 🐛 Bug Fixes\n\n* **LinkedIn:** Copy text lines up with the post ([00ec22f](https://github.com/lokesh-sparrow/loki-patches/commit/00ec22fdcd5ecc1005c15ecd303a246d9d45d16b))",
-  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.1.0-dev.2/patches-1.1.0-dev.2.mpp",
+  "created_at": "2026-11-03T20:39:23",
+  "description": "## [1.1.0-dev.3](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-11-03)\n\n### 🐛 Bug Fixes\n\n* **LinkedIn:** Credits show only Loki Patches, Morphe and LinkedIn ([49f8bf3](https://github.com/lokesh-sparrow/loki-patches/commit/49f8bf3d3fb3368a26bea0875959df86128c182b))",
+  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.1.0-dev.3/patches-1.1.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.1.0-dev.2"
+  "version": "1.1.0-dev.3"
 }
