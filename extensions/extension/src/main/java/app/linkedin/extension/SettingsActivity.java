@@ -347,8 +347,23 @@ public final class SettingsActivity extends Activity {
         boolean dark = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
                 == Configuration.UI_MODE_NIGHT_YES;
         int color = MaterialYou.settingsAccent(dark, dark ? ACCENT_DARK : ACCENT_LIGHT);
+        // Some phone makers draw dialog buttons as filled pills in their own accent color, which hides accent
+        // colored text. The dialog gets a background of its own and the buttons become plain text buttons, so
+        // they are readable on every phone.
+        if (dialog.getWindow() != null) {
+            GradientDrawable panel = new GradientDrawable();
+            panel.setColor(dark ? 0xFF1E1F22 : 0xFFFFFFFF);
+            panel.setCornerRadius(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24,
+                    context.getResources().getDisplayMetrics()));
+            dialog.getWindow().setBackgroundDrawable(panel);
+        }
         for (int which : new int[]{AlertDialog.BUTTON_POSITIVE, AlertDialog.BUTTON_NEGATIVE, AlertDialog.BUTTON_NEUTRAL}) {
-            if (dialog.getButton(which) != null) dialog.getButton(which).setTextColor(color);
+            android.widget.Button button = dialog.getButton(which);
+            if (button == null) continue;
+            button.setBackgroundColor(0x00000000);
+            button.setTextColor(color);
+            button.setAllCaps(false);
+            button.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 
