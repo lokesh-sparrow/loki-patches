@@ -1,3 +1,9 @@
+## [1.1.0-dev.7](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.6...v1.1.0-dev.7) (2026-11-04)
+
+### 🐛 Bug Fixes
+
+* **Diagnostics:** outline the video and document viewers by the screen in front ([1999fe0](https://github.com/lokesh-sparrow/loki-patches/commit/1999fe0a3f81d783188b9fde8d564c045cbc3ef9))
+
 ## [1.1.0-dev.6](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.5...v1.1.0-dev.6) (2026-11-04)
 
 ### 🐛 Bug Fixes
