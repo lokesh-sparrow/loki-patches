@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.0-dev.7",
+  "version": "1.1.0-dev.8",
   "patches": [
     {
       "name": "Anonymous profile viewing",
@@ -861,6 +861,56 @@
     {
       "name": "Sanitize share links",
       "description": "Removes tracking parameters from LinkedIn links when they are copied or shared.",
+      "default": true,
+      "category": null,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.linkedin.android",
+          "name": "LinkedIn",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0A66C2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.1255.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1259",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1261",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Tap to hide in viewers",
+      "description": "Tap a video or document in full screen to hide the caption and buttons, like photos.",
       "default": true,
       "category": null,
       "dependencies": [

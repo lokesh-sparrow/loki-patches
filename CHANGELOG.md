@@ -1,3 +1,9 @@
+## [1.1.0-dev.8](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.7...v1.1.0-dev.8) (2026-11-04)
+
+### ✨ New Features
+
+* **LinkedIn:** Tap to hide in viewers ([c1ae60a](https://github.com/lokesh-sparrow/loki-patches/commit/c1ae60aa88e96e6c4582a2af59e0bd7b6d4f3c92))
+
 ## [1.1.0-dev.7](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.6...v1.1.0-dev.7) (2026-11-04)
 
 ### 🐛 Bug Fixes
