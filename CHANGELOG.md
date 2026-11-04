@@ -1,29 +1,22 @@
-## [1.1.0](https://github.com/lokesh-sparrow/loki-patches/compare/v1.0.0...v1.1.0) (2026-11-04)
+## 1.1.0 (2026-11-04)
 
-### 🐛 Bug Fixes
+### What's New
+- 👆 Swipe between feeds: on the home feed, swipe left for Network and right for For you, like on X. It works while the For you and Network tabs are on screen. Swipes on photo carousels and on documents with many pages still flip through them as before.
+- 🖼️ Tap to hide in viewers: tap a document or a video in full screen to hide the caption and the like, comment and share buttons, and tap again to bring them back, the way photos already worked.
+- 📄 Documents as PDF: save a post's document or carousel as one PDF from the download button or the ⋯ menu. LinkedIn's own download button in the document viewer is hidden, so there is one button on photos, videos and documents.
+- ⋯ Post menu items: the ⋯ menu of a post now has Copy text, Download photos and videos, and Save document as PDF.
+- 📋 Copy text: long press any text to select and copy it, like on Reddit. Long posts open in a scrollable sheet with the whole text, and there is a switch if you prefer to select them in place.
+- 📌 Keep feed on reopen, muted words, anonymous profile viewing (experimental) and hiding of AI suggestions are included.
+- LinkedIn 4.1.1267 is supported, next to 4.1.1255.1, 4.1.1259 and 4.1.1261.
 
-* **Diagnostics:** outline the video and document viewers by the screen in front ([1999fe0](https://github.com/lokesh-sparrow/loki-patches/commit/1999fe0a3f81d783188b9fde8d564c045cbc3ef9))
-* **Hide Premium upsells:** don't fail on LinkedIn 4.1.1267 ([e63824f](https://github.com/lokesh-sparrow/loki-patches/commit/e63824fbe7c9e42c8c6c4378a264c3126375969d))
-* **LinkedIn:** Copy text lines up with the post ([00ec22f](https://github.com/lokesh-sparrow/loki-patches/commit/00ec22fdcd5ecc1005c15ecd303a246d9d45d16b))
-* **LinkedIn:** Copy text overlay, long posts, scrolling and dialog buttons ([ebca8fe](https://github.com/lokesh-sparrow/loki-patches/commit/ebca8fe9433352ee2eae3aea76b4910a0aacaff0))
-* **LinkedIn:** Credits show only Loki Patches, Morphe and LinkedIn ([49f8bf3](https://github.com/lokesh-sparrow/loki-patches/commit/49f8bf3d3fb3368a26bea0875959df86128c182b))
-* **LinkedIn:** remove Show full posts ([f5264a7](https://github.com/lokesh-sparrow/loki-patches/commit/f5264a779432421278c1eb5aee5a98c9cbe3826d))
-* **Show full posts:** leave captions in the photo, video and document viewers collapsed ([6b35407](https://github.com/lokesh-sparrow/loki-patches/commit/6b354071352265929d93bc5170f25b44140adb60))
-* **Swipe between feeds:** find the tabs in every view, and don't open media on a swipe ([8fed6a7](https://github.com/lokesh-sparrow/loki-patches/commit/8fed6a7b40d9ae6e5e5fb111988b4426f15c4180))
-* **Swipe between feeds:** tap the tab with a touch, also on the For you and Network screens ([c89bd0c](https://github.com/lokesh-sparrow/loki-patches/commit/c89bd0c0153f0593e89c8ada95e20cc46afb04e3))
-* **Tap to hide in viewers:** make the extension class public ([34fc095](https://github.com/lokesh-sparrow/loki-patches/commit/34fc09566c59c1c3ce58c49ef4bedd3687c2ee57))
-* **Tap to hide in viewers:** toggle the document controls from the touch ([e64ce48](https://github.com/lokesh-sparrow/loki-patches/commit/e64ce48cd1bb2788689e8143f3b07aa8a332e2e6))
+### Fixes
+- LinkedIn could close right after opening with an earlier test build. This release opens normally.
+- Copy text lines up with the post, scrolls with it and stays selected while you scroll.
+- Loki's dialogs, such as Choose media, are readable on every phone, also on light LinkedIn screens in dark mode.
+- Hide Premium upsells works on LinkedIn 4.1.1267.
+- The credits in Loki settings list only Loki Patches, Morphe and LinkedIn.
 
-### ✨ New Features
-
-* **Download media:** hide LinkedIn's own document download button ([e57d45b](https://github.com/lokesh-sparrow/loki-patches/commit/e57d45b18b4912ca31dce7828134fcf9a4097410))
-* **LinkedIn:** Documents as PDF, Show full posts, Anonymous profile viewing, Hide AI suggestions ([5c8ead1](https://github.com/lokesh-sparrow/loki-patches/commit/5c8ead11ce7c3ff44c416dc4de72c923472e8d2e))
-* **LinkedIn:** Keep feed on reopen, muted words, Full text button ([6513e1d](https://github.com/lokesh-sparrow/loki-patches/commit/6513e1dad41833f9a3736e33e2ae61a6e84432f8))
-* **LinkedIn:** Post menu items ([9dba08a](https://github.com/lokesh-sparrow/loki-patches/commit/9dba08ab3c55a0defd5f78f0448832584ff88a75))
-* **LinkedIn:** support 4.1.1267, don't switch feeds twice for one swipe ([46e23d7](https://github.com/lokesh-sparrow/loki-patches/commit/46e23d7d6ff153696049c16c02ac746e2ab36003))
-* **LinkedIn:** Swipe between feeds ([292403d](https://github.com/lokesh-sparrow/loki-patches/commit/292403d84f498af1da7d589310f2e0550a0af92a))
-* **LinkedIn:** Switch for long posts in a sheet ([1a3656e](https://github.com/lokesh-sparrow/loki-patches/commit/1a3656ee81bd4ae797d58f174f393beec53e8037))
-* **LinkedIn:** Tap to hide in viewers ([c1ae60a](https://github.com/lokesh-sparrow/loki-patches/commit/c1ae60aa88e96e6c4582a2af59e0bd7b6d4f3c92))
+**20 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).
 
 ## [1.1.0-dev.9](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.8...v1.1.0-dev.9) (2026-11-04)
 
