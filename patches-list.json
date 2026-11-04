@@ -1,7 +1,57 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0",
+  "version": "1.1.0-dev.9",
   "patches": [
+    {
+      "name": "Anonymous profile viewing",
+      "description": "Adds an option (off by default, experimental) to visit profiles without sending the profile view event, while you keep seeing who viewed your own profile.",
+      "default": true,
+      "category": null,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.linkedin.android",
+          "name": "LinkedIn",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0A66C2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.1255.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1259",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1261",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
     {
       "name": "Block tracking",
       "description": "Adds an option (off by default) to stop sending most LinkedIn analytics events.",
@@ -154,7 +204,7 @@
     },
     {
       "name": "Download media",
-      "description": "Adds a download button to the full screen photo and video viewer.",
+      "description": "Adds a download button to the full screen photo, video and document viewer. Documents (PDFs and carousels) are saved as one PDF.",
       "default": true,
       "category": null,
       "dependencies": [
@@ -504,6 +554,56 @@
       "options": []
     },
     {
+      "name": "Keep feed on reopen",
+      "description": "Keeps your place in the feed when you come back to LinkedIn, instead of reloading it. Pull down or tap the \"New posts\" button to load new posts.",
+      "default": true,
+      "category": null,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.linkedin.android",
+          "name": "LinkedIn",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0A66C2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.1255.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1259",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1261",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Material You",
       "description": "Uses your wallpaper's colors (Android 12+): the accent color instead of LinkedIn blue and the green of selected filters, and Material 3 surface colors for backgrounds, cards, bars and borders. Some screens drawn by LinkedIn's servers may keep their own colors.",
       "default": false,
@@ -657,6 +757,56 @@
       "options": []
     },
     {
+      "name": "Post menu items",
+      "description": "Adds Copy text, Download photos and videos, and Save document as PDF to the ⋯ menu of posts.",
+      "default": true,
+      "category": null,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.linkedin.android",
+          "name": "LinkedIn",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0A66C2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.1255.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1259",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1261",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove gaps and dividers",
       "description": "Removes the gray gaps between posts and the dividers between list items, so the feed and lists are one flat surface.",
       "default": false,
@@ -711,6 +861,56 @@
     {
       "name": "Sanitize share links",
       "description": "Removes tracking parameters from LinkedIn links when they are copied or shared.",
+      "default": true,
+      "category": null,
+      "dependencies": [
+        "BytecodePatch"
+      ],
+      "compatiblePackages": [
+        {
+          "packageName": "com.linkedin.android",
+          "name": "LinkedIn",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": "#0A66C2",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "4.1.1255.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1259",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "4.1.1261",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": null,
+              "versionCodes": null,
+              "isExperimental": true,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Tap to hide in viewers",
+      "description": "Tap a video or document in full screen to hide the caption and buttons, like photos.",
       "default": true,
       "category": null,
       "dependencies": [
