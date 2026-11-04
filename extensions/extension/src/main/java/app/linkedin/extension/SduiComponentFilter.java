@@ -157,6 +157,16 @@ public final class SduiComponentFilter {
 
     /** Called with every SDUI component before shouldHide; returns it, or an edited copy (the post ⋯ menu). */
     public static Object rewrite(Object component) {
+        if (Settings.viewerTapToHide()) {
+            try {
+                Object viewTracking = Proto.is(component, "hasViewTracking")
+                        ? Proto.call(component, "getViewTracking") : null;
+                component = ViewerChrome.rewrite(component, Proto.string(viewTracking, "getViewName"),
+                        Proto.string(component, "getObservabilityViewName"), payload(component));
+            } catch (Throwable t) {
+                Diagnostics.error("viewer rewrite failed", t);
+            }
+        }
         if (!Settings.postMenu()) return component;
         return PostMenu.inject(component, payload(component));
     }

@@ -188,6 +188,13 @@ public final class SduiMediaDownload {
             button = createDownloadButton(activity);
             content.addView(button);
         }
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) button.getLayoutParams();
+        // The document viewer's top bar has a second row with the title and page counter.
+        int top = dp(activity, documentByFragment.get(fragment) != null ? 164 : 88);
+        if (params.topMargin != top) {
+            params.topMargin = top;
+            button.setLayoutParams(params);
+        }
         button.bringToFront();
         button.setOnClickListener(v -> onDownloadClick(activity, fragment));
         button.setOnLongClickListener(v -> {

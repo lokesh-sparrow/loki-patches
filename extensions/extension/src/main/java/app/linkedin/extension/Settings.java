@@ -35,6 +35,7 @@ public final class Settings {
     static final String HIDE_AI = "hide_ai";
     static final String KEEP_FEED = "keep_feed";
     static final String POST_MENU = "post_menu";
+    static final String VIEWER_TAP_TO_HIDE = "viewer_tap_to_hide";
     static final String MUTED_WORDS = "muted_words";
     static final String ANONYMOUS_PROFILE_VIEWING = "anonymous_profile_viewing";
     static final String OPEN_LINKS_DIRECTLY = "open_links_directly";
@@ -287,6 +288,15 @@ public final class Settings {
 
     static boolean hideAi() {
         return isFeedFiltersIncluded() && get(HIDE_AI, false);
+    }
+
+    public static boolean isViewerTapToHideIncluded() {
+        return false;
+    }
+
+    /** Tap a video or document in full screen to hide its caption and buttons, like photos. */
+    static boolean viewerTapToHide() {
+        return isViewerTapToHideIncluded() && get(VIEWER_TAP_TO_HIDE, true);
     }
 
     public static boolean isPostMenuIncluded() {

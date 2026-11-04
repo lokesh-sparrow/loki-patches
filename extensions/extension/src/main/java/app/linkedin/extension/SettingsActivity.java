@@ -150,7 +150,7 @@ public final class SettingsActivity extends Activity {
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
                 || Settings.isCopyTextIncluded() || Settings.isKeepFeedIncluded()
-                || Settings.isPostMenuIncluded()) {
+                || Settings.isPostMenuIncluded() || Settings.isViewerTapToHideIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -165,6 +165,10 @@ public final class SettingsActivity extends Activity {
             if (Settings.isPostMenuIncluded()) {
                 feed.toggle(Settings.POST_MENU, true, "Post menu items",
                         "Copy text, Download photos and videos, and Save document as PDF in the ⋯ menu of posts.");
+            }
+            if (Settings.isViewerTapToHideIncluded()) {
+                feed.toggle(Settings.VIEWER_TAP_TO_HIDE, true, "Tap to hide in viewers",
+                        "Tap a video or document in full screen to hide the caption and buttons, like photos.");
             }
             if (Settings.isKeepFeedIncluded()) {
                 feed.toggle(Settings.KEEP_FEED, true, "Keep feed on reopen",
@@ -789,6 +793,7 @@ public final class SettingsActivity extends Activity {
                 {"Copy text", Settings.isCopyTextIncluded()},
                 {"Keep feed on reopen", Settings.isKeepFeedIncluded()},
                 {"Post menu items", Settings.isPostMenuIncluded()},
+                {"Tap to hide in viewers", Settings.isViewerTapToHideIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},
