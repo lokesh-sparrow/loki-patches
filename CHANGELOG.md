@@ -1,3 +1,9 @@
+## [1.1.0-dev.9](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.8...v1.1.0-dev.9) (2026-11-04)
+
+### 🐛 Bug Fixes
+
+* **Tap to hide in viewers:** toggle the document controls from the touch ([e64ce48](https://github.com/lokesh-sparrow/loki-patches/commit/e64ce48cd1bb2788689e8143f3b07aa8a332e2e6))
+
 ## [1.1.0-dev.8](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.7...v1.1.0-dev.8) (2026-11-04)
 
 ### ✨ New Features
