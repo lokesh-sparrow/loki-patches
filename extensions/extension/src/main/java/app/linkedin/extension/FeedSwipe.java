@@ -35,6 +35,7 @@ public final class FeedSwipe {
     private static boolean multiTouch;
     /** The touch already handled: nested Compose views each see it. */
     private static long handledDownTime = -1;
+    private static long lastSwitch;
 
     private FeedSwipe() {
     }
@@ -121,6 +122,10 @@ public final class FeedSwipe {
         }
         // Swiping toward the open tab does nothing, but it must not open a photo either.
         if (targetSelected) return true;
+        // Nested Compose views can each see the same swipe.
+        long now = SystemClock.uptimeMillis();
+        if (now - lastSwitch < 700) return true;
+        lastSwitch = now;
         Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network"));
         // After the swipe's own touch has finished.
         final Rect tabBounds = target;
