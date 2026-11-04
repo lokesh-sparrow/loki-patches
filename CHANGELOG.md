@@ -1,3 +1,9 @@
+## [1.1.0-dev.5](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-11-04)
+
+### 🐛 Bug Fixes
+
+* **Show full posts:** leave captions in the photo, video and document viewers collapsed ([6b35407](https://github.com/lokesh-sparrow/loki-patches/commit/6b354071352265929d93bc5170f25b44140adb60))
+
 ## [1.1.0-dev.4](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.3...v1.1.0-dev.4) (2026-11-03)
 
 ### 🐛 Bug Fixes
