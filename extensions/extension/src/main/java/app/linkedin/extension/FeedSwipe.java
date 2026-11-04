@@ -7,8 +7,12 @@ import android.os.SystemClock;
 import android.view.InputDevice;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Swipe between feeds: on the home feed, swiping left opens Network and swiping right opens For you, like the tabs
@@ -29,6 +33,8 @@ public final class FeedSwipe {
     private static float downY;
     private static long downTime;
     private static boolean multiTouch;
+    /** The touch already handled: nested Compose views each see it. */
+    private static long handledDownTime = -1;
 
     private FeedSwipe() {
     }
@@ -48,15 +54,19 @@ public final class FeedSwipe {
                     multiTouch = true;
                     break;
                 case MotionEvent.ACTION_UP:
-                    if (multiTouch || TextSelectionOverlay.isActive()) return;
+                    if (multiTouch || TextSelectionOverlay.isActive() || handledDownTime == downTime) return;
                     float dx = event.getRawX() - downX;
                     float dy = event.getRawY() - downY;
                     if (event.getEventTime() - downTime > MAX_DURATION) return;
                     if (Math.abs(dx) < view.getRootView().getWidth() * 0.25f || Math.abs(dx) < Math.abs(dy) * 2.5f) {
                         return;
                     }
+                    handledDownTime = downTime;
                     // Swiping left goes to the tab on the right, like turning a page.
-                    switchTo(view, dx < 0 ? 1 : 0, (int) downX, (int) downY);
+                    if (switchTo(view, dx < 0 ? 1 : 0, (int) downX, (int) downY)) {
+                        // Photos and videos take a swipe that ends on them for a tap and open.
+                        event.setAction(MotionEvent.ACTION_CANCEL);
+                    }
                     break;
                 default:
                     break;
@@ -72,40 +82,58 @@ public final class FeedSwipe {
                 || screen.endsWith(".feed.NetworkFeed");
     }
 
-    /** Taps tab 0 (For you) or 1 (Network), unless the swipe started on a carousel or the tab is open already. */
-    private static void switchTo(View view, int tab, int startX, int startY) throws ReflectiveOperationException {
-        AccessibilityNodeProvider provider = CopyTextPatch.provider(view);
-        int[] ids = CopyTextPatch.semanticsNodeIds(view);
-        if (provider == null || ids == null) return;
+    /**
+     * Taps tab 0 (For you) or 1 (Network), unless the swipe started on a carousel. The tabs are in the home screen's
+     * header, a different Compose view than the feed, so every Compose view of the window is searched.
+     *
+     * @return whether the swipe was taken (the touch is then cancelled for the screen).
+     */
+    private static boolean switchTo(View view, int tab, int startX, int startY) throws ReflectiveOperationException {
+        List<View> composeViews = new ArrayList<>();
+        findComposeViews(view.getRootView(), composeViews);
         Rect bounds = new Rect();
         Rect target = null;
         boolean targetSelected = false;
-        for (int id : ids) {
-            AccessibilityNodeInfo info = provider.createAccessibilityNodeInfo(id);
-            if (info == null) continue;
-            if (scrollsSideways(info) || PAGES.matcher(label(info)).find()) {
-                info.getBoundsInScreen(bounds);
-                if (bounds.contains(startX, startY)) {
-                    Settings.debugLog("feed swipe: left to a carousel or document");
-                    return;
+        for (View composeView : composeViews) {
+            AccessibilityNodeProvider provider = CopyTextPatch.provider(composeView);
+            int[] ids = CopyTextPatch.semanticsNodeIds(composeView);
+            if (provider == null || ids == null) continue;
+            for (int id : ids) {
+                AccessibilityNodeInfo info = provider.createAccessibilityNodeInfo(id);
+                if (info == null || !info.isVisibleToUser()) continue;
+                if (scrollsSideways(info) || PAGES.matcher(label(info)).find()) {
+                    info.getBoundsInScreen(bounds);
+                    if (bounds.contains(startX, startY)) {
+                        Settings.debugLog("feed swipe: left to a carousel or document");
+                        return false;
+                    }
                 }
-            }
-            int index = tabIndex(info);
-            if (index == tab && info.isVisibleToUser()) {
-                target = new Rect();
-                info.getBoundsInScreen(target);
-                targetSelected = isSelected(info);
+                if (tabIndex(info) == tab) {
+                    target = new Rect();
+                    info.getBoundsInScreen(target);
+                    targetSelected = isSelected(info);
+                }
             }
         }
         if (target == null || target.isEmpty()) {
-            Settings.debugLog("feed swipe: tabs not on screen");
-            return;
+            Settings.debugLog("feed swipe: tabs not on screen (" + composeViews.size() + " views)");
+            return false;
         }
-        if (targetSelected) return;
+        // Swiping toward the open tab does nothing, but it must not open a photo either.
+        if (targetSelected) return true;
         Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network"));
         // After the swipe's own touch has finished.
-        final Rect bounds2 = target;
-        MAIN.post(() -> tap(view.getRootView(), bounds2.exactCenterX(), bounds2.exactCenterY()));
+        final Rect tabBounds = target;
+        MAIN.post(() -> tap(view.getRootView(), tabBounds.exactCenterX(), tabBounds.exactCenterY()));
+        return true;
+    }
+
+    private static void findComposeViews(View view, List<View> out) {
+        if (view.getClass().getName().endsWith("AndroidComposeView")) out.add(view);
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) findComposeViews(group.getChildAt(i), out);
+        }
     }
 
     /** A touch down and up at a screen point, the way a finger taps. */

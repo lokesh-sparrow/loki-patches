@@ -375,8 +375,8 @@ public final class SettingsActivity extends Activity {
      * Colors the buttons of a dialog shown over LinkedIn's own screens, whose theme makes button text transparent.
      */
     static void tintButtons(AlertDialog dialog, Context context) {
-        boolean dark = (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
-                == Configuration.UI_MODE_NIGHT_YES;
+        boolean dark = hasLightText(dialog.getContext(), (context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES);
         int color = MaterialYou.settingsAccent(dark, dark ? ACCENT_DARK : ACCENT_LIGHT);
         // Some phone makers draw dialog buttons as filled pills in their own accent color, which hides accent
         // colored text. The dialog gets a background of its own and the buttons become plain text buttons, so
@@ -396,6 +396,26 @@ public final class SettingsActivity extends Activity {
             button.setAllCaps(false);
             button.setTypeface(Typeface.DEFAULT_BOLD);
         }
+    }
+
+    /**
+     * Whether the dialog's theme draws light text, so it needs a dark panel. LinkedIn's screens can be light while
+     * the phone is in dark mode, so the panel follows the text color of the theme rather than the phone's mode.
+     */
+    private static boolean hasLightText(Context context, boolean fallback) {
+        TypedValue value = new TypedValue();
+        if (!context.getTheme().resolveAttribute(android.R.attr.textColorPrimary, value, true)) return fallback;
+        int color;
+        if (value.resourceId != 0) {
+            android.content.res.ColorStateList list = context.getColorStateList(value.resourceId);
+            color = list.getDefaultColor();
+        } else if (value.type >= TypedValue.TYPE_FIRST_COLOR_INT && value.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            color = value.data;
+        } else {
+            return fallback;
+        }
+        double luminance = (0.299 * ((color >> 16) & 0xFF) + 0.587 * ((color >> 8) & 0xFF) + 0.114 * (color & 0xFF)) / 255;
+        return luminance > 0.5;
     }
 
     private AlertDialog tint(AlertDialog dialog) {
