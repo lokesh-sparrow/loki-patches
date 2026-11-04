@@ -30,19 +30,109 @@ public final class SduiComponentFilter {
         if (loggedViewNames.add(viewName)) Settings.debugLog("view " + viewName);
     }
 
-    /** Components whose structure goes into the diagnostic report once, to build features on them. */
-    private static final java.util.Set<String> CAPTURE = new java.util.HashSet<>(java.util.Arrays.asList(
-            "feed-tabs-list", "feed-for-you-feed", "feed-network-feed-pill"));
-    private static final java.util.Set<String> captured = ConcurrentHashMap.newKeySet();
+    /** Size of the biggest component outlined per viewer screen, so each screen's root goes into the report. */
+    private static final java.util.Map<String, Integer> outlined = new ConcurrentHashMap<>();
+    private static final int COMPACT_DATA_FIELD = 35;
+    private static final int VIEW_TRACKING_FIELD = 26;
+    private static final int TRIGGERS_FIELD = 25;
+    private static final int DISPLAYED_FIELD = 40;
 
-    private static void captureStructure(String viewName, Object component) {
-        if (!Settings.debug() || !CAPTURE.contains(viewName) || !captured.add(viewName)) return;
+    /**
+     * With diagnostic logging, writes the component tree of the video and document viewer into the report: view
+     * names, type ids, show/hide expressions (d=) and taps (t), to build the viewers' tap to hide on.
+     */
+    private static void outlineViewer(String screenName, Object component) {
+        if (!Settings.debug() || !(screenName.endsWith(".VideoViewer") || screenName.endsWith(".DocumentViewer"))) {
+            return;
+        }
         byte[] bytes = payload(component);
         if (bytes == null) return;
-        // Hex bytes with spaces: the diagnostic report removes anything that looks like an id or a token.
-        StringBuilder hex = new StringBuilder();
-        for (int i = 0; i < Math.min(bytes.length, 1500); i++) hex.append(String.format("%02x ", bytes[i] & 0xFF));
-        Settings.debugLog("structure " + viewName + " (" + bytes.length + " bytes): " + hex);
+        Integer biggest = outlined.get(screenName);
+        if (biggest != null && biggest >= bytes.length) return;
+        outlined.put(screenName, bytes.length);
+        StringBuilder out = new StringBuilder();
+        outlineComponent(bytes, out, 0);
+        String screen = screenName.substring(screenName.lastIndexOf('.') + 1);
+        Settings.debugLog("outline " + screen + " (" + bytes.length + " bytes): " + out);
+    }
+
+    private static void outlineComponent(byte[] bytes, StringBuilder out, int depth) {
+        java.util.List<ProtoEdit.Field> fields = ProtoEdit.parse(bytes);
+        if (fields == null) return;
+        String name = "";
+        long type = -1;
+        StringBuilder flags = new StringBuilder();
+        for (ProtoEdit.Field field : fields) {
+            if (field.wireType != 2) continue;
+            if (field.number == VIEW_TRACKING_FIELD) {
+                for (ProtoEdit.Field f : orEmpty(ProtoEdit.parse(field.data))) {
+                    if (f.number == 1 && f.wireType == 2) name = new String(f.data, java.nio.charset.StandardCharsets.UTF_8);
+                }
+            } else if (field.number == COMPACT_DATA_FIELD) {
+                type = typeId(field.data);
+            } else if (field.number == DISPLAYED_FIELD) {
+                flags.append(" d=").append(describe(field.data));
+            } else if (field.number == TRIGGERS_FIELD) {
+                flags.append(" t");
+            }
+        }
+        out.append('{').append(name.isEmpty() ? "-" : name).append('#').append(type).append(flags);
+        if (depth < 40) {
+            for (ProtoEdit.Field field : fields) {
+                if (field.wireType == 2 && field.number != VIEW_TRACKING_FIELD && field.number != DISPLAYED_FIELD
+                        && field.number != TRIGGERS_FIELD) {
+                    findComponents(field.data, out, depth + 1, 0);
+                }
+            }
+        }
+        out.append('}');
+    }
+
+    /** Looks for nested components in a message, through the messages that hold them. */
+    private static void findComponents(byte[] bytes, StringBuilder out, int depth, int hops) {
+        if (hops > 8) return;
+        java.util.List<ProtoEdit.Field> fields = ProtoEdit.parse(bytes);
+        if (fields == null) return;
+        for (ProtoEdit.Field field : fields) {
+            if (field.wireType != 2 || field.data.length < 2) continue;
+            if (isComponent(field.data)) outlineComponent(field.data, out, depth);
+            else findComponents(field.data, out, depth, hops + 1);
+        }
+    }
+
+    private static boolean isComponent(byte[] bytes) {
+        java.util.List<ProtoEdit.Field> fields = ProtoEdit.parse(bytes);
+        if (fields == null) return false;
+        for (ProtoEdit.Field field : fields) {
+            if (field.number == COMPACT_DATA_FIELD && field.wireType == 2 && typeId(field.data) > 0) return true;
+        }
+        return false;
+    }
+
+    /** The type id of a CompactAny (field 1), or -1. */
+    private static long typeId(byte[] compactAny) {
+        for (ProtoEdit.Field f : orEmpty(ProtoEdit.parse(compactAny))) {
+            if (f.number == 1 && f.wireType == 0) {
+                long value = 0;
+                for (int i = 0, shift = 0; i < f.data.length; i++, shift += 7) value |= (long) (f.data[i] & 0x7F) << shift;
+                return value;
+            }
+        }
+        return -1;
+    }
+
+    /** Hex of a small message, with spaces: the diagnostic report removes anything that looks like an id. */
+    private static String describe(byte[] bytes) {
+        StringBuilder hex = new StringBuilder("[");
+        for (int i = 0; i < Math.min(bytes.length, 120); i++) {
+            if (i > 0) hex.append(' ');
+            hex.append(String.format("%02x", bytes[i] & 0xFF));
+        }
+        return hex.append(']').toString();
+    }
+
+    private static java.util.List<ProtoEdit.Field> orEmpty(java.util.List<ProtoEdit.Field> fields) {
+        return fields == null ? java.util.Collections.emptyList() : fields;
     }
 
     private static final java.util.Set<String> AI_WORDS = new java.util.HashSet<>(java.util.Arrays.asList(
@@ -75,7 +165,7 @@ public final class SduiComponentFilter {
             String viewName = Proto.string(viewTracking, "getViewName");
             String screenName = Proto.string(component, "getObservabilityViewName");
             logViewName(viewName);
-            captureStructure(viewName, component);
+            outlineViewer(screenName, component);
             if (Settings.hideAi() && isAiView(viewName)) {
                 return hide(true, "ai: " + viewName);
             }
@@ -99,6 +189,9 @@ public final class SduiComponentFilter {
                     return hide(Settings.focusMode(), "focus mode: " + viewName);
                 case "feed-new-update-pill":
                     return hide(Settings.hideNewPostsPill(), "new posts pill");
+                case "download-document":
+                    // LinkedIn's own button, only on documents the author allows to download; ours saves any.
+                    return hide(Settings.downloadMedia(), "native document download");
                 case "feed-see-translation":
                     return hide(Settings.hideTranslation(), "see translation");
                 case "profile-card-promo":
