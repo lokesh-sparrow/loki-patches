@@ -350,9 +350,13 @@ public final class Settings {
         return isHidePremiumIncluded() && get(HIDE_PREMIUM, true);
     }
 
-    /** Called from HomeNavPanelTransformer.toPremiumViewData (the "Me" panel upsell card). */
-    public static boolean hideNavPanelUpsell() {
-        return hidePremium();
+    /**
+     * Called with the Premium upsell slot of the "Me" panel, when its data is created.
+     *
+     * @return null (no upsell bar) with Hide Premium upsells, otherwise the slot.
+     */
+    public static Object navPanelUpsellSlot(Object slot) {
+        return hidePremium() ? null : slot;
     }
 
     static boolean downloadMedia() {
