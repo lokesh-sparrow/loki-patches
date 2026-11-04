@@ -24,7 +24,8 @@ import java.util.WeakHashMap;
  * viewer only the play button has such a state; the top bar and bottom part now follow it, so they show and hide
  * with the video's own controls.
  */
-final class ViewerChrome {
+@SuppressWarnings("unused")
+public final class ViewerChrome {
     private static final String CONTAINER = "feed-update-screen-container";
     private static final String VIDEO_SOURCE = ".setupDataAndViewer";
 
