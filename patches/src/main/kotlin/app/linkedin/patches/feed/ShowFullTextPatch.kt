@@ -14,6 +14,17 @@ private const val EXPANSION_STATE = "Lcom/linkedin/sdui/viewdata/text/ExpansionB
  * ExpandableTextState(initialText, ellipsisText, collapsedText, collapsedMaxLines, onlyShowMoreWhenNecessary,
  * initial ExpansionBehaviorState): the "...more" text of the server driven UI.
  */
+/** TextBlock's ExpandableText(textBlock, expansionState, ...) composable, which creates ExpandableTextState. */
+private object ExpandableTextFingerprint : Fingerprint(
+    definingClass = "Lcom/linkedin/android/infra/sdui/components/text/TextBlockKt;",
+    returnType = "V",
+    custom = { method, _ ->
+        method.parameterTypes.size > 2 &&
+            method.parameterTypes[0].toString() == "Lcom/linkedin/sdui/viewdata/text/TextBlockViewData;" &&
+            method.parameterTypes[1].toString() == EXPANSION_STATE
+    },
+)
+
 private object ExpandableTextStateFingerprint : Fingerprint(
     definingClass = "Lcom/linkedin/android/infra/sdui/components/text/expandableText/ExpandableTextState;",
     name = "<init>",
@@ -31,6 +42,12 @@ val showFullTextPatch = bytecodePatch(
 
     execute {
         markIncluded("isShowFullTextIncluded")
+
+        // Viewer captions (with their own "show more" action) stay as LinkedIn shows them.
+        ExpandableTextFingerprint.method.addInstructions(
+            0,
+            "invoke-static/range { p0 .. p0 }, $EXTENSION_PACKAGE/LokiPatches;->expandableText(Ljava/lang/Object;)V"
+        )
 
         ExpandableTextStateFingerprint.method.apply {
             val state = "p${parameterTypes.size}"
