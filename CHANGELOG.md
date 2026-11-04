@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0...v1.1.1) (2026-11-04)
+
+### 🐛 Bug Fixes
+
+* **Hide Premium upsells:** hide the Me panel's Premium bar on LinkedIn 4.1.1267 ([3694938](https://github.com/lokesh-sparrow/loki-patches/commit/3694938e6ec3979241acb7f35eb04f94ebde5bc2))
+
 ## 1.1.0 (2026-11-04)
 
 ### What's New
