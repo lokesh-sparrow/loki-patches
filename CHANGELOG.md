@@ -1,8 +1,9 @@
-## [1.1.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0...v1.1.1) (2026-11-04)
+## 1.1.1 (2026-11-04)
 
-### 🐛 Bug Fixes
+### Fixes
+- The "Activate Premium" bar at the bottom of the side menu is hidden again on LinkedIn 4.1.1267. Hide Premium upsells removed it on 4.1.1261, but LinkedIn moved that code in 4.1.1267, so the bar came back.
 
-* **Hide Premium upsells:** hide the Me panel's Premium bar on LinkedIn 4.1.1267 ([3694938](https://github.com/lokesh-sparrow/loki-patches/commit/3694938e6ec3979241acb7f35eb04f94ebde5bc2))
+**20 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).
 
 ## 1.1.0 (2026-11-04)
 
