@@ -42,18 +42,21 @@ public final class SduiComponentFilter {
      * names, type ids, show/hide expressions (d=) and taps (t), to build the viewers' tap to hide on.
      */
     private static void outlineViewer(String screenName, Object component) {
-        if (!Settings.debug() || !(screenName.endsWith(".VideoViewer") || screenName.endsWith(".DocumentViewer"))) {
-            return;
-        }
+        if (!Settings.debug()) return;
+        // Components carry the name of the data that built them (documentViewerScreenDataAware,
+        // setupDataAndViewer, mediaCommentaryBottomSheetDataAware), not the screen's, so the resumed screen decides.
+        String resumed = SduiMediaDownload.resumedScreen();
+        if (!(resumed.endsWith(".VideoViewer") || resumed.endsWith(".DocumentViewer"))) return;
         byte[] bytes = payload(component);
         if (bytes == null) return;
-        Integer biggest = outlined.get(screenName);
+        String source = screenName.substring(screenName.lastIndexOf('.') + 1);
+        String key = resumed.substring(resumed.lastIndexOf('.') + 1) + "/" + source;
+        Integer biggest = outlined.get(key);
         if (biggest != null && biggest >= bytes.length) return;
-        outlined.put(screenName, bytes.length);
+        outlined.put(key, bytes.length);
         StringBuilder out = new StringBuilder();
         outlineComponent(bytes, out, 0);
-        String screen = screenName.substring(screenName.lastIndexOf('.') + 1);
-        Settings.debugLog("outline " + screen + " (" + bytes.length + " bytes): " + out);
+        Settings.debugLog("outline " + key + " (" + bytes.length + " bytes): " + out);
     }
 
     private static void outlineComponent(byte[] bytes, StringBuilder out, int depth) {
