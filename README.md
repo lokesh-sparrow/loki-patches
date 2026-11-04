@@ -6,7 +6,7 @@
 
 [![Latest release](https://img.shields.io/github/v/release/lokesh-sparrow/loki-patches?style=for-the-badge&labelColor=0d1117&color=22d3ee&label=release)](https://github.com/lokesh-sparrow/loki-patches/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/lokesh-sparrow/loki-patches/total?style=for-the-badge&labelColor=0d1117&color=0ea5e9)](https://github.com/lokesh-sparrow/loki-patches/releases)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-4.1.1261-2563eb?style=for-the-badge&labelColor=0d1117)](#patches)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-4.1.1267-2563eb?style=for-the-badge&labelColor=0d1117)](#patches)
 [![Morphe](https://img.shields.io/badge/patches%20for-Morphe-06b6d4?style=for-the-badge&labelColor=0d1117)](https://morphe.software)
 [![License](https://img.shields.io/github/license/lokesh-sparrow/loki-patches?style=for-the-badge&labelColor=0d1117&color=6e7681)](LICENSE)
 
@@ -16,9 +16,9 @@
 
 <br/>
 
-<a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches/tree/dev&name=Loki%20Patches"><img src=".github/assets/add-to-morphe.svg" alt="Add to Morphe" height="55"/></a>
+<a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches"><img src=".github/assets/add-to-morphe.svg" alt="Add to Morphe" height="55"/></a>
 
-<sub>Always the newest build. Prefer only stable releases? <a href="https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches">Add the stable source</a>.</sub>
+<sub>Stable releases. Made for LinkedIn <b>4.1.1267</b>. Turn off auto-update for LinkedIn in Play Store, or it replaces the patched app.</sub>
 
 </div>
 
@@ -61,9 +61,8 @@ A tap or a scroll works as usual.
 
 You need an Android phone and [Morphe Manager](https://morphe.software).
 
-1. In Morphe Manager, **[add the Loki Patches source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches/tree/dev&name=Loki%20Patches)**
-   (or add `https://github.com/lokesh-sparrow/loki-patches/tree/dev` by hand). It always gets the newest build;
-   for stable releases only, use [the stable source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches) or `https://github.com/lokesh-sparrow/loki-patches`.
+1. In Morphe Manager, **[add the Loki Patches source](https://morphe.software/add-source?github=lokesh-sparrow/loki-patches&name=Loki%20Patches)**
+   (or add `https://github.com/lokesh-sparrow/loki-patches` by hand). It gets stable releases only.
 2. Choose **LinkedIn**, and download the version Morphe Manager recommends from APKMirror. Use the
    *Android 10+* variant: the APK, not the bundle.
 3. Patch it and install it.
@@ -90,8 +89,8 @@ also search the options, back up and restore them, check for updates and pick th
 
 **🎯 Supported versions:**
 
-| 4.1.1255.1 | 4.1.1259 | 4.1.1261 |
-| :---: | :---: | :---: |
+| 4.1.1255.1 | 4.1.1259 | 4.1.1261 | 4.1.1267 |
+| :---: | :---: | :---: | :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
