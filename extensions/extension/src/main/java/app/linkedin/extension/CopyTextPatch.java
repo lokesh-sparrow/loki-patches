@@ -271,6 +271,12 @@ public final class CopyTextPatch {
         return result;
     }
 
+    /** The accessibility node provider of a Compose view. */
+    static AccessibilityNodeProvider provider(View view) throws ReflectiveOperationException {
+        AccessibilityNodeProvider provider = view.getAccessibilityNodeProvider();
+        return provider != null ? provider : providerOfDelegate(view);
+    }
+
     /** The node provider straight from Compose's delegate, for a view that has not handed it to Android. */
     private static AccessibilityNodeProvider providerOfDelegate(View view) throws ReflectiveOperationException {
         if (delegateField == null) {

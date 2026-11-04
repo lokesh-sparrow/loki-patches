@@ -36,6 +36,7 @@ public final class Settings {
     static final String KEEP_FEED = "keep_feed";
     static final String POST_MENU = "post_menu";
     static final String VIEWER_TAP_TO_HIDE = "viewer_tap_to_hide";
+    static final String SWIPE_FEEDS = "swipe_feeds";
     static final String MUTED_WORDS = "muted_words";
     static final String ANONYMOUS_PROFILE_VIEWING = "anonymous_profile_viewing";
     static final String OPEN_LINKS_DIRECTLY = "open_links_directly";
@@ -288,6 +289,15 @@ public final class Settings {
 
     static boolean hideAi() {
         return isFeedFiltersIncluded() && get(HIDE_AI, false);
+    }
+
+    public static boolean isSwipeFeedsIncluded() {
+        return false;
+    }
+
+    /** Swipe left and right on the home feed to switch between For you and Network. */
+    static boolean swipeFeeds() {
+        return isSwipeFeedsIncluded() && get(SWIPE_FEEDS, true);
     }
 
     public static boolean isViewerTapToHideIncluded() {

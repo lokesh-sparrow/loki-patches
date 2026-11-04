@@ -150,7 +150,8 @@ public final class SettingsActivity extends Activity {
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
                 || Settings.isCopyTextIncluded() || Settings.isKeepFeedIncluded()
-                || Settings.isPostMenuIncluded() || Settings.isViewerTapToHideIncluded()) {
+                || Settings.isPostMenuIncluded() || Settings.isViewerTapToHideIncluded()
+                || Settings.isSwipeFeedsIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -165,6 +166,10 @@ public final class SettingsActivity extends Activity {
             if (Settings.isPostMenuIncluded()) {
                 feed.toggle(Settings.POST_MENU, true, "Post menu items",
                         "Copy text, Download photos and videos, and Save document as PDF in the ⋯ menu of posts.");
+            }
+            if (Settings.isSwipeFeedsIncluded()) {
+                feed.toggle(Settings.SWIPE_FEEDS, true, "Swipe between feeds",
+                        "Swipe left for Network and right for For you, when the tabs are on screen.");
             }
             if (Settings.isViewerTapToHideIncluded()) {
                 feed.toggle(Settings.VIEWER_TAP_TO_HIDE, true, "Tap to hide in viewers",
@@ -794,6 +799,7 @@ public final class SettingsActivity extends Activity {
                 {"Keep feed on reopen", Settings.isKeepFeedIncluded()},
                 {"Post menu items", Settings.isPostMenuIncluded()},
                 {"Tap to hide in viewers", Settings.isViewerTapToHideIncluded()},
+                {"Swipe between feeds", Settings.isSwipeFeedsIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},
