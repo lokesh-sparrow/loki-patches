@@ -1,3 +1,13 @@
+## [1.1.0-dev.6](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.5...v1.1.0-dev.6) (2026-11-04)
+
+### 🐛 Bug Fixes
+
+* **LinkedIn:** remove Show full posts ([f5264a7](https://github.com/lokesh-sparrow/loki-patches/commit/f5264a779432421278c1eb5aee5a98c9cbe3826d))
+
+### ✨ New Features
+
+* **Download media:** hide LinkedIn's own document download button ([e57d45b](https://github.com/lokesh-sparrow/loki-patches/commit/e57d45b18b4912ca31dce7828134fcf9a4097410))
+
 ## [1.1.0-dev.5](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-11-04)
 
 ### 🐛 Bug Fixes

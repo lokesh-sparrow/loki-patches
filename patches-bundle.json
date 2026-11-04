@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-04T06:44:03",
-  "description": "## [1.1.0-dev.5](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.4...v1.1.0-dev.5) (2026-11-04)\n\n### 🐛 Bug Fixes\n\n* **Show full posts:** leave captions in the photo, video and document viewers collapsed ([6b35407](https://github.com/lokesh-sparrow/loki-patches/commit/6b354071352265929d93bc5170f25b44140adb60))",
-  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.1.0-dev.5/patches-1.1.0-dev.5.mpp",
+  "created_at": "2026-11-04T07:28:28",
+  "description": "## [1.1.0-dev.6](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.0-dev.5...v1.1.0-dev.6) (2026-11-04)\n\n### 🐛 Bug Fixes\n\n* **LinkedIn:** remove Show full posts ([f5264a7](https://github.com/lokesh-sparrow/loki-patches/commit/f5264a779432421278c1eb5aee5a98c9cbe3826d))\n\n### ✨ New Features\n\n* **Download media:** hide LinkedIn's own document download button ([e57d45b](https://github.com/lokesh-sparrow/loki-patches/commit/e57d45b18b4912ca31dce7828134fcf9a4097410))",
+  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.1.0-dev.6/patches-1.1.0-dev.6.mpp",
   "signature_download_url": "",
-  "version": "1.1.0-dev.5"
+  "version": "1.1.0-dev.6"
 }
