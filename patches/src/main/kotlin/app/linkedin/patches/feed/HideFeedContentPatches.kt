@@ -71,7 +71,9 @@ val hidePremiumUpsellsPatch = bytecodePatch(
     execute {
         markIncluded("isHidePremiumIncluded")
 
-        NavPanelPremiumFingerprint.method.apply {
+        // LinkedIn 4.1.1267 no longer builds this card in the app (the Me panel's upsells come from the server and
+        // are hidden by the component filter), so the hook is only added where the method exists.
+        NavPanelPremiumFingerprint.methodOrNull?.apply {
             // At method entry every local register is free, so v0 can be used as scratch.
             addInstructionsWithLabels(
                 0,
