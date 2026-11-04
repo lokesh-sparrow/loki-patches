@@ -149,7 +149,7 @@ public final class SettingsActivity extends Activity {
         }
 
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
-                || Settings.isCopyTextIncluded() || Settings.isShowFullTextIncluded() || Settings.isKeepFeedIncluded()
+                || Settings.isCopyTextIncluded() || Settings.isKeepFeedIncluded()
                 || Settings.isPostMenuIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
@@ -169,10 +169,6 @@ public final class SettingsActivity extends Activity {
             if (Settings.isKeepFeedIncluded()) {
                 feed.toggle(Settings.KEEP_FEED, true, "Keep feed on reopen",
                         "Stay where you were when you come back. Pull down or tap \"New posts\" for new posts.");
-            }
-            if (Settings.isShowFullTextIncluded()) {
-                feed.toggle(Settings.SHOW_FULL_TEXT, true, "Show full posts",
-                        "Show the whole text of posts and comments, without \"...more\".");
             }
             if (Settings.isFeedFiltersIncluded()) {
                 feed.toggle(Settings.FOCUS_MODE, false, "Focus mode", "Hide like, comment, and repost counts.")
@@ -791,7 +787,6 @@ public final class SettingsActivity extends Activity {
                 {"Feed filters", Settings.isFeedFiltersIncluded()},
                 {"Disable double-tap like", Settings.isDisableDoubleTapLikeIncluded()},
                 {"Copy text", Settings.isCopyTextIncluded()},
-                {"Show full posts", Settings.isShowFullTextIncluded()},
                 {"Keep feed on reopen", Settings.isKeepFeedIncluded()},
                 {"Post menu items", Settings.isPostMenuIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},

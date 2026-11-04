@@ -33,7 +33,6 @@
 | | |
 |---|---|
 | ✂️ **Copy text** | Long press any post, comment or profile text to select and copy it, right where it is |
-| 📖 **Show full posts** | The whole text of posts and comments, without "…more" |
 | 🚫 **No ads** | Promoted posts, promoted jobs, Premium and AI upsells, sponsored messages |
 | ⬇️ **Downloads** | Photos and videos in full screen (one or **all** of a post), profile photos and banners, in the best quality |
 | 📄 **Documents as PDF** | Save a post's document or carousel as one PDF file |
@@ -114,7 +113,6 @@ also search the options, back up and restore them, check for updates and pick th
 | [Post menu items](#post-menu-items) | Adds Copy text, Download photos and videos, and Save document as PDF to the ⋯ menu of posts. |  |
 | [Remove gaps and dividers](#remove-gaps-and-dividers) | Removes the gray gaps between posts and the dividers between list items, so the feed and lists are one flat surface. |  |
 | [Sanitize share links](#sanitize-share-links) | Removes tracking parameters from LinkedIn links when they are copied or shared. |  |
-| [Show full posts](#show-full-posts) | Shows the whole text of posts and comments instead of cutting it off with "...more". |  |
 
 </details>
 

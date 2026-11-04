@@ -33,7 +33,6 @@ public final class Settings {
     static final String HIDE_NEW_POSTS_PILL = "hide_new_posts_pill";
     static final String HIDE_TRANSLATION = "hide_translation";
     static final String HIDE_AI = "hide_ai";
-    static final String SHOW_FULL_TEXT = "show_full_text";
     static final String KEEP_FEED = "keep_feed";
     static final String POST_MENU = "post_menu";
     static final String MUTED_WORDS = "muted_words";
@@ -305,14 +304,6 @@ public final class Settings {
 
     static boolean keepFeed() {
         return isKeepFeedIncluded() && get(KEEP_FEED, true);
-    }
-
-    public static boolean isShowFullTextIncluded() {
-        return false;
-    }
-
-    static boolean showFullText() {
-        return isShowFullTextIncluded() && get(SHOW_FULL_TEXT, true);
     }
 
     public static boolean isAnonymousProfileViewingIncluded() {
