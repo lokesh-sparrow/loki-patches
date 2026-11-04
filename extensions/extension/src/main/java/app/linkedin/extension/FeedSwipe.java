@@ -1,6 +1,10 @@
 package app.linkedin.extension;
 
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.InputDevice;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -8,13 +12,15 @@ import android.view.accessibility.AccessibilityNodeProvider;
 
 /**
  * Swipe between feeds: on the home feed, swiping left opens Network and swiping right opens For you, like the tabs
- * of X. The tab is tapped through accessibility, so LinkedIn switches it exactly as when it is tapped.
+ * of X. The tab is found through accessibility and tapped with a touch, so LinkedIn switches it exactly as when it
+ * is tapped (its tabs handle touches themselves, they have no click action).
  * <p>
  * Swipes that start on something that scrolls sideways (photo carousels, documents with many pages) are left to it.
  */
 @SuppressWarnings("unused")
 public final class FeedSwipe {
     private static final long MAX_DURATION = 600;
+    private static final Handler MAIN = new Handler(Looper.getMainLooper());
     /** Pages of a document or photos of a carousel: "Page 3 of 11", "3 of 11" (the feed tabs are "1 of 2"). */
     private static final java.util.regex.Pattern PAGES =
             java.util.regex.Pattern.compile("(?i)\\bpage\\s+\\d+|\\b\\d+\\s+of\\s+(?:[3-9]|\\d{2,})\\b");
@@ -30,7 +36,7 @@ public final class FeedSwipe {
     /** Injection point, at the start of AndroidComposeView.dispatchTouchEvent. Only watches the touch. */
     public static void onTouch(View view, MotionEvent event) {
         try {
-            if (!Settings.swipeFeeds() || !SduiMediaDownload.resumedScreen().endsWith(".MainFeed")) return;
+            if (!Settings.swipeFeeds() || !isHomeFeed(SduiMediaDownload.resumedScreen())) return;
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
                     downX = event.getRawX();
@@ -60,13 +66,19 @@ public final class FeedSwipe {
         }
     }
 
+    /** The home screen, or one of its feeds, which resume inside it. */
+    private static boolean isHomeFeed(String screen) {
+        return screen.endsWith(".feed.MainFeed") || screen.endsWith(".feed.ForYouFeed")
+                || screen.endsWith(".feed.NetworkFeed");
+    }
+
     /** Taps tab 0 (For you) or 1 (Network), unless the swipe started on a carousel or the tab is open already. */
     private static void switchTo(View view, int tab, int startX, int startY) throws ReflectiveOperationException {
         AccessibilityNodeProvider provider = CopyTextPatch.provider(view);
         int[] ids = CopyTextPatch.semanticsNodeIds(view);
         if (provider == null || ids == null) return;
         Rect bounds = new Rect();
-        int target = -1;
+        Rect target = null;
         boolean targetSelected = false;
         for (int id : ids) {
             AccessibilityNodeInfo info = provider.createAccessibilityNodeInfo(id);
@@ -79,18 +91,38 @@ public final class FeedSwipe {
                 }
             }
             int index = tabIndex(info);
-            if (index == tab && info.isClickable() && info.isVisibleToUser()) {
-                target = id;
+            if (index == tab && info.isVisibleToUser()) {
+                target = new Rect();
+                info.getBoundsInScreen(target);
                 targetSelected = isSelected(info);
             }
         }
-        if (target == -1) {
+        if (target == null || target.isEmpty()) {
             Settings.debugLog("feed swipe: tabs not on screen");
             return;
         }
         if (targetSelected) return;
-        boolean clicked = provider.performAction(target, AccessibilityNodeInfo.ACTION_CLICK, null);
-        Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network") + (clicked ? "" : " (not clicked)"));
+        Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network"));
+        // After the swipe's own touch has finished.
+        final Rect bounds2 = target;
+        MAIN.post(() -> tap(view.getRootView(), bounds2.exactCenterX(), bounds2.exactCenterY()));
+    }
+
+    /** A touch down and up at a screen point, the way a finger taps. */
+    private static void tap(View root, float screenX, float screenY) {
+        int[] origin = new int[2];
+        root.getLocationOnScreen(origin);
+        float x = screenX - origin[0];
+        float y = screenY - origin[1];
+        long time = SystemClock.uptimeMillis();
+        MotionEvent down = MotionEvent.obtain(time, time, MotionEvent.ACTION_DOWN, x, y, 0);
+        MotionEvent up = MotionEvent.obtain(time, time + 40, MotionEvent.ACTION_UP, x, y, 0);
+        down.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+        up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+        root.dispatchTouchEvent(down);
+        root.dispatchTouchEvent(up);
+        down.recycle();
+        up.recycle();
     }
 
     /** 0 for the For you tab, 1 for Network, -1 for anything else. Their descriptions: "For you, 1 of 2". */
