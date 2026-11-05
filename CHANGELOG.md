@@ -1,3 +1,21 @@
+## 1.2.0 (2026-11-06)
+
+### What's New
+- Anonymous profile viewing now works. With it on (Settings, Privacy), the profiles you open no longer show you in the other person's "Who viewed your profile" list or in a company page's visitor list. LinkedIn counts a visit from the analytics of the profile page, which Loki now leaves out. It is marked experimental because LinkedIn could change how it counts visits in a future update.
+- AMOLED black bars: a new patch that makes the dark top bar, bottom bar and side menu pure black, next to the feed that AMOLED black already covered. Select it with Material You when patching.
+- Hide bottom tabs: switches in Loki settings to take My Network and Jobs out of the bottom bar. Restart LinkedIn after changing them.
+- Swipe between feeds also works on My Network: swipe left for Catch up and right for Grow.
+- Hide games now also hides the heading above the puzzle cards, "Wind down with a puzzle" and "Today's puzzles".
+- Loki's own settings page follows AMOLED black in dark mode.
+- This release is made for LinkedIn 4.1.1267, the latest version.
+
+### Fixes
+- Who viewed your profile shows the list of viewers again, and hides the Premium cards between the rows.
+- The Premium bar in the side menu is hidden on LinkedIn 4.1.1267.
+- Dialogs in Loki's pages are readable on LinkedIn's light screens in dark mode.
+
+**22 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).
+
 ## [1.2.0](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.1...v1.2.0) (2026-11-05)
 
 ### 🐛 Bug Fixes
