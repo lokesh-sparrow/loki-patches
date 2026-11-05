@@ -1,3 +1,15 @@
+## 1.2.1 (2026-11-06)
+
+### What's New
+- GmsCore support: a check at startup reports when microG RE is missing, too old, restricted by battery optimization or not running, and opens the download page or the relevant settings. Google sign-in no longer fails silently. The checks are adapted from Hoo-dles' MicroG integration.
+
+### Fixes
+- The icon is attached to every release.
+- Anonymous profile viewing: the setting and the README describe what it does.
+- Removed unused upstream branding and donation strings from the translations.
+
+**22 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).
+
 ## [1.2.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.0...v1.2.1) (2026-11-05)
 
 ### 🐛 Bug Fixes
