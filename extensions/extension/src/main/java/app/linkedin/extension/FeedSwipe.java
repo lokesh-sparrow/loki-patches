@@ -43,7 +43,7 @@ public final class FeedSwipe {
     /** Injection point, at the start of AndroidComposeView.dispatchTouchEvent. Only watches the touch. */
     public static void onTouch(View view, MotionEvent event) {
         try {
-            if (!Settings.swipeFeeds() || !isHomeFeed(SduiMediaDownload.resumedScreen())) return;
+            if (!Settings.swipeFeeds()) return;
             switch (event.getActionMasked()) {
                 case MotionEvent.ACTION_DOWN:
                     downX = event.getRawX();
@@ -75,12 +75,6 @@ public final class FeedSwipe {
         } catch (Throwable t) {
             Diagnostics.error("feed swipe failed", t);
         }
-    }
-
-    /** The home screen, or one of its feeds, which resume inside it. */
-    private static boolean isHomeFeed(String screen) {
-        return screen.endsWith(".feed.MainFeed") || screen.endsWith(".feed.ForYouFeed")
-                || screen.endsWith(".feed.NetworkFeed");
     }
 
     /**
@@ -161,8 +155,8 @@ public final class FeedSwipe {
     /** 0 for the For you tab, 1 for Network, -1 for anything else. Their descriptions: "For you, 1 of 2". */
     private static int tabIndex(AccessibilityNodeInfo info) {
         String label = label(info);
-        if (label.startsWith("For you") || label.contains(", 1 of 2")) return 0;
-        if (label.startsWith("Network") || label.contains(", 2 of 2")) return 1;
+        if (label.startsWith("For you") || label.startsWith("Grow") || label.contains(", 1 of 2")) return 0;
+        if (label.startsWith("Network") || label.startsWith("Catch up") || label.contains(", 2 of 2")) return 1;
         return -1;
     }
 

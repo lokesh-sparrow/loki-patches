@@ -151,7 +151,7 @@ public final class SettingsActivity extends Activity {
         if (Settings.isFeedFiltersIncluded() || Settings.isDisableDoubleTapLikeIncluded()
                 || Settings.isCopyTextIncluded() || Settings.isKeepFeedIncluded()
                 || Settings.isPostMenuIncluded() || Settings.isViewerTapToHideIncluded()
-                || Settings.isSwipeFeedsIncluded()) {
+                || Settings.isSwipeFeedsIncluded() || Settings.isHideTabsIncluded()) {
             Category feed = new Category("Feed", IconDrawable.FEED);
             if (Settings.isDisableDoubleTapLikeIncluded()) {
                 feed.toggle(Settings.DISABLE_DOUBLE_TAP_LIKE, true, "Disable double-tap like",
@@ -170,6 +170,12 @@ public final class SettingsActivity extends Activity {
             if (Settings.isSwipeFeedsIncluded()) {
                 feed.toggle(Settings.SWIPE_FEEDS, true, "Swipe between feeds",
                         "Swipe left for Network and right for For you, when the tabs are on screen.");
+            }
+            if (Settings.isHideTabsIncluded()) {
+                feed.toggle(Settings.HIDE_TAB_NETWORK, false, "Hide the My Network tab",
+                        "Takes My Network out of the bottom bar. Restart LinkedIn after changing it.");
+                feed.toggle(Settings.HIDE_TAB_JOBS, false, "Hide the Jobs tab",
+                        "Takes Jobs out of the bottom bar. Restart LinkedIn after changing it.");
             }
             if (Settings.isViewerTapToHideIncluded()) {
                 feed.toggle(Settings.VIEWER_TAP_TO_HIDE, true, "Tap to hide in viewers",
@@ -825,6 +831,8 @@ public final class SettingsActivity extends Activity {
                 {"Post menu items", Settings.isPostMenuIncluded()},
                 {"Tap to hide in viewers", Settings.isViewerTapToHideIncluded()},
                 {"Swipe between feeds", Settings.isSwipeFeedsIncluded()},
+                {"Hide the My Network tab", Settings.isHideTabsIncluded()},
+                {"Hide the Jobs tab", Settings.isHideTabsIncluded()},
                 {"Anonymous profile viewing", Settings.isAnonymousProfileViewingIncluded()},
                 {"Download media", Settings.isDownloadMediaIncluded()},
                 {"Messaging", Settings.isMessagingIncluded()},
