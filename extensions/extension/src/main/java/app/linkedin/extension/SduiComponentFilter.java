@@ -215,7 +215,7 @@ public final class SduiComponentFilter {
                     break;
             }
 
-            if (Settings.hidePremium() && viewName.contains("upsell") && !onViewersScreen()) {
+            if (Settings.hidePremium() && viewName.contains("upsell") && !keepViewerUpsell(viewName)) {
                 // premium-upsell-card, profile-ai-enhance-card-upsell, taj-home-upsell, ...
                 return hide(true, "premium upsell: " + viewName);
             }
@@ -232,11 +232,11 @@ public final class SduiComponentFilter {
 
     /**
      * "Who viewed your profile". Free accounts see their latest viewers there, and the locked rows are wrapped in
-     * upsell parts (who-viewed-my-profile-interstitial-upsell, interesting-viewer-upsell), so hiding them would
-     * hide the list itself.
+     * the interstitial upsell parts (who-viewed-my-profile-interstitial-upsell), so hiding those hid the list
+     * itself. The small Premium cards between the rows are still hidden.
      */
-    private static boolean onViewersScreen() {
-        return SduiMediaDownload.resumedScreen().contains(".premium.wvmp.");
+    private static boolean keepViewerUpsell(String viewName) {
+        return viewName.contains("interstitial") && SduiMediaDownload.resumedScreen().contains(".premium.wvmp.");
     }
 
     private static boolean hideFeedUpdate(Object component, Object viewTracking) {
