@@ -59,6 +59,27 @@ public final class SduiComponentFilter {
         Settings.debugLog("outline " + key + " (" + bytes.length + " bytes): " + out);
     }
 
+    /**
+     * With diagnostic logging and Hide games on, writes the structure of the parts that hold the game cards into the
+     * report: the names of their children and whether each has the text "puzzle" (the heading above the cards), to
+     * hide the heading with them.
+     */
+    private static void outlineGames(Object component) {
+        if (!Settings.debug() || !Settings.hideGames()) return;
+        byte[] bytes = payload(component);
+        if (bytes == null || bytes.length > 40000 || !ProtoScanner.containsAscii(bytes, "game-card-")) return;
+        if (outlined.put("games/" + bytes.length, bytes.length) != null) return;
+        StringBuilder out = new StringBuilder();
+        outlineComponent(bytes, out, 0);
+        StringBuilder children = new StringBuilder();
+        for (byte[] child : ViewerChrome.children(bytes)) {
+            children.append(" [").append(ViewerChrome.viewName(child)).append(" puzzle=")
+                    .append(ProtoScanner.containsAscii(child, "puzzle")).append(" games=")
+                    .append(ProtoScanner.containsAscii(child, "game-card-")).append(']');
+        }
+        Settings.debugLog("outline games (" + bytes.length + " bytes): " + out + " children:" + children);
+    }
+
     private static void outlineComponent(byte[] bytes, StringBuilder out, int depth) {
         java.util.List<ProtoEdit.Field> fields = ProtoEdit.parse(bytes);
         if (fields == null) return;
@@ -179,6 +200,7 @@ public final class SduiComponentFilter {
             String screenName = Proto.string(component, "getObservabilityViewName");
             logViewName(viewName);
             outlineViewer(screenName, component);
+            outlineGames(component);
             if (Settings.hideAi() && isAiView(viewName)) {
                 return hide(true, "ai: " + viewName);
             }
