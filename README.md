@@ -89,8 +89,8 @@ also search the options, back up and restore them, check for updates and pick th
 
 **🎯 Supported versions:**
 
-| 4.1.1255.1 | 4.1.1259 | 4.1.1261 | 4.1.1267 |
-| :---: | :---: | :---: | :---: |
+| 4.1.1267 |
+| :---: |
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
