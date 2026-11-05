@@ -1,3 +1,21 @@
+## [1.2.0](https://github.com/lokesh-sparrow/loki-patches/compare/v1.1.1...v1.2.0) (2026-11-05)
+
+### 🐛 Bug Fixes
+
+* **Anonymous profile viewing:** drop every analytics event of a profile page ([2cd1f0c](https://github.com/lokesh-sparrow/loki-patches/commit/2cd1f0c53863486dea936922818d5a3c6cb317c0))
+* **Anonymous profile viewing:** drop the profile view event where every event goes through ([517856f](https://github.com/lokesh-sparrow/loki-patches/commit/517856fb09b1d2a6409b06d093fbac78eb3c57f4))
+* **Anonymous profile viewing:** request profile screens as a prefetch ([f31cecc](https://github.com/lokesh-sparrow/loki-patches/commit/f31ceccb6dc5b4245b259399e1f19428ad2de9d3))
+* **Hide Premium upsells:** hide the small cards in Who viewed your profile, keep the sheet parts ([d44010f](https://github.com/lokesh-sparrow/loki-patches/commit/d44010f6ad3363d84c73ae7a95844f959c44e843))
+* **Hide Premium upsells:** keep the viewer list in Who viewed your profile ([a29e166](https://github.com/lokesh-sparrow/loki-patches/commit/a29e1667b3401ccab7203daede47c1f6a7b8b725))
+* **LinkedIn:** hide the games heading, find the My Network tabs when they are not Compose ([491328d](https://github.com/lokesh-sparrow/loki-patches/commit/491328d446a93c10923cd5ef31c001d19a785f76))
+* **Settings:** Loki's pages follow AMOLED black on dark ([9a51fff](https://github.com/lokesh-sparrow/loki-patches/commit/9a51fff34c9d85fc8a6a8166d4624d96b885ef8f))
+* **Swipe between feeds:** swipe right from Catch up to Grow on My Network ([a666b87](https://github.com/lokesh-sparrow/loki-patches/commit/a666b8718f23f8425992f40884b496e92f7af7ba))
+
+### ✨ New Features
+
+* **LinkedIn:** AMOLED black bars ([5915ed1](https://github.com/lokesh-sparrow/loki-patches/commit/5915ed15c2b2894312531e4e395018c132c2c2bf))
+* **LinkedIn:** Hide bottom tabs, swipe between Grow and Catch up ([48bd678](https://github.com/lokesh-sparrow/loki-patches/commit/48bd678dab6b4cf37e56b9ca82dcd8eee855143e))
+
 ## 1.1.1 (2026-11-04)
 
 ### Fixes
