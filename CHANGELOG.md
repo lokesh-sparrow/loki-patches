@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.0...v1.2.1) (2026-11-05)
+
+### 🐛 Bug Fixes
+
+* **GmsCore support:** tell the user when microG RE is missing, old, restricted or stopped ([315cc75](https://github.com/lokesh-sparrow/loki-patches/commit/315cc758d367da0c446f7ea4ba1bfbc9e6e89430))
+
 ## 1.2.0 (2026-11-06)
 
 ### What's New
