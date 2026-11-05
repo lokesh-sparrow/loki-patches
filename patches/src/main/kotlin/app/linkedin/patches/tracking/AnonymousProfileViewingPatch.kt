@@ -6,6 +6,7 @@ import app.linkedin.patches.shared.markIncluded
 import app.linkedin.patches.shared.settingsPatch
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
@@ -43,6 +44,14 @@ private object TrackerSendFingerprint : Fingerprint(
 private object SduiRequestFingerprint : Fingerprint(
     definingClass = "Lcom/linkedin/android/infra/sdui/repo/SduiRepository;",
     name = "makeStreamingNetworkCall",
+)
+
+/** ScreenRequest.setIsPrefetch(prefetch): set right after the screen id when a server drawn screen is requested. */
+private object ScreenRequestPrefetchFingerprint : Fingerprint(
+    definingClass = "Lproto/sdui/ScreenRequest;",
+    name = "setIsPrefetch",
+    returnType = "V",
+    parameters = listOf("Z"),
 )
 
 /** Tracker.sendViaLiTracker(eventName, event, ...): one of the two senders every analytics event leaves through. */
@@ -92,6 +101,15 @@ val anonymousProfileViewingPatch = bytecodePatch(
         SduiRequestFingerprint.method.addInstruction(
             0,
             "invoke-static/range { p1 .. p4 }, $EXTENSION_PACKAGE/LokiPatches;->onSduiRequest(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V"
+        )
+
+        // The setter has no locals: the flag (p1) is passed with the request (p0) and replaced by the result.
+        ScreenRequestPrefetchFingerprint.method.addInstructions(
+            0,
+            """
+                invoke-static { p0, p1 }, $EXTENSION_PACKAGE/LokiPatches;->profilePrefetch(Ljava/lang/Object;Z)Z
+                move-result p1
+            """
         )
 
         // Both senders have locals, so v0 is free at their entry.

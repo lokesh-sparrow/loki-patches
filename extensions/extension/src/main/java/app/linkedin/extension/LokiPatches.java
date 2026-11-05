@@ -59,6 +59,27 @@ public final class LokiPatches {
         }
     }
 
+    /**
+     * Injection point, at the start of ScreenRequest.setIsPrefetch(prefetch), right after the screen id is set. With
+     * Anonymous profile viewing, a profile screen is requested as a prefetch: LinkedIn loads profiles ahead of time
+     * that way, and those loads are not visits.
+     *
+     * @return the prefetch flag to send.
+     */
+    public static boolean profilePrefetch(Object screenRequest, boolean prefetch) {
+        try {
+            if (prefetch || !Settings.anonymousProfileViewing()) return prefetch;
+            Object id = screenRequest.getClass().getMethod("getScreenId").invoke(screenRequest);
+            if (id instanceof String && ((String) id).contains(".profile.")) {
+                Settings.debugLog("profile screen requested as a prefetch: " + id);
+                return true;
+            }
+        } catch (Throwable t) {
+            Diagnostics.error("profilePrefetch failed", t);
+        }
+        return prefetch;
+    }
+
     /** Injection point, at the start of Tracker.sendViaLiTracker(eventName, event, ...). */
     public static boolean dropLiTrackerEvent(Object eventName, Object event) {
         return dropOutgoingEvent(eventName, event, "LiTracker");
