@@ -20,6 +20,21 @@ private object SendProfileViewEventFingerprint : Fingerprint(
     returnType = "V",
 )
 
+/**
+ * Tracker.send(event, pageInstance, trackingControl): every analytics event of the app, also the ProfileViewEvent
+ * of LinkedIn's server drawn profile screen.
+ */
+private object TrackerSendFingerprint : Fingerprint(
+    definingClass = "Lcom/linkedin/android/litrackinglib/metric/Tracker;",
+    name = "send",
+    returnType = "V",
+    parameters = listOf(
+        "Lcom/linkedin/android/tracking/v2/event/CustomTrackingEventBuilder;",
+        "Lcom/linkedin/android/tracking/v2/event/PageInstance;",
+        "Ljava/lang/String;",
+    ),
+)
+
 @Suppress("unused")
 val anonymousProfileViewingPatch = bytecodePatch(
     name = "Anonymous profile viewing",
@@ -39,6 +54,20 @@ val anonymousProfileViewingPatch = bytecodePatch(
                 0,
                 """
                     invoke-static { }, $EXTENSION_PACKAGE/LokiPatches;->skipProfileViewEvent()Z
+                    move-result v0
+                    if-eqz v0, :send
+                    return-void
+                """,
+                ExternalLabel("send", getInstruction(0))
+            )
+        }
+
+        TrackerSendFingerprint.method.apply {
+            // The method has locals, so v0 is free at its entry. p1 is the event.
+            addInstructionsWithLabels(
+                0,
+                """
+                    invoke-static/range { p1 .. p1 }, $EXTENSION_PACKAGE/LokiPatches;->dropTrackingEvent(Ljava/lang/Object;)Z
                     move-result v0
                     if-eqz v0, :send
                     return-void

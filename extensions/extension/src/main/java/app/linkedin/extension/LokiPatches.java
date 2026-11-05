@@ -41,6 +41,50 @@ public final class LokiPatches {
         }
     }
 
+    private static final java.util.Map<Class<?>, Boolean> profileViewEvents =
+            new java.util.concurrent.ConcurrentHashMap<>();
+
+    /**
+     * Injection point, at the start of Tracker.send(event, pageInstance, trackingControl): every analytics event goes
+     * through it. The ProfileViewEvent (the one with the viewee's member urn) is dropped with Anonymous profile
+     * viewing, whichever screen sends it, since LinkedIn's new profile screen does not use
+     * ProfileTrackingFeatureImpl.
+     *
+     * @return true to drop the event.
+     */
+    public static boolean dropTrackingEvent(Object event) {
+        try {
+            if (event == null) return false;
+            Class<?> type = event.getClass();
+            Boolean profileView = profileViewEvents.get(type);
+            if (profileView == null) {
+                profileView = hasField(type, "vieweeMemberUrn");
+                profileViewEvents.put(type, profileView);
+            }
+            if (Settings.debug() && (profileView || SduiMediaDownload.resumedScreen().contains(".profile."))) {
+                Settings.debugLog("tracking event: " + type.getSimpleName() + (profileView ? " (profile view)" : ""));
+            }
+            if (profileView && Settings.anonymousProfileViewing()) {
+                Settings.debugLog("profile view event not sent");
+                return true;
+            }
+        } catch (Throwable t) {
+            Diagnostics.error("dropTrackingEvent failed", t);
+        }
+        return false;
+    }
+
+    private static boolean hasField(Class<?> type, String name) {
+        for (Class<?> c = type; c != null; c = c.getSuperclass()) {
+            try {
+                c.getDeclaredField(name);
+                return true;
+            } catch (NoSuchFieldException ignored) {
+            }
+        }
+        return false;
+    }
+
     /**
      * Injection point, at the start of ProfileTrackingFeatureImpl.sendCustomProfileViewEvent: the event behind
      * "Who viewed your profile". Skipping it doesn't send the visit, so it doesn't change your own privacy mode.
