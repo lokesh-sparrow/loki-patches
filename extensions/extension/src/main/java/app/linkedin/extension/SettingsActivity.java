@@ -450,6 +450,11 @@ public final class SettingsActivity extends Activity {
             divider = materialYou[2];
             accent = materialYou[3];
         }
+        if (dark && Settings.amoledBlack()) {
+            // AMOLED black wins over the wallpaper's tinted dark surface.
+            background = 0xFF000000;
+            surface = 0xFF161616;
+        }
 
         Window window = getWindow();
         window.setStatusBarColor(background);
