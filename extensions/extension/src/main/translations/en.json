@@ -181,5 +181,12 @@
   "Hide the Jobs tab": "Hide the Jobs tab",
   "Takes My Network out of the bottom bar. Restart LinkedIn after changing it.": "Takes My Network out of the bottom bar. Restart LinkedIn after changing it.",
   "Takes Jobs out of the bottom bar. Restart LinkedIn after changing it.": "Takes Jobs out of the bottom bar. Restart LinkedIn after changing it.",
-  "Doesn't send the analytics events of profile pages, so your visits aren't listed in other people's viewers. Experimental.": "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental."
+  "Doesn't send the analytics events of profile pages, so your visits aren't listed in other people's viewers. Experimental.": "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.",
+  "microG RE is not installed. Opening its download page.": "microG RE is not installed. Opening its download page.",
+  "microG RE is too old. Opening its download page to update it.": "microG RE is too old. Opening its download page to update it.",
+  "microG RE is limited by battery optimization, so Google sign-in may fail. Allow it to run in the background.": "microG RE is limited by battery optimization, so Google sign-in may fail. Allow it to run in the background.",
+  "microG RE is not running in the background, so Google sign-in may fail. Your phone may stop it; the website explains how to allow it.": "microG RE is not running in the background, so Google sign-in may fail. Your phone may stop it; the website explains how to allow it.",
+  "Open settings": "Open settings",
+  "Open website": "Open website",
+  "Not now": "Not now"
 }

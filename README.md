@@ -175,7 +175,7 @@ content. Modifying an app may go against its terms of service; you use it at you
 ## License
 
 GPLv3, with the additional terms in [NOTICE](NOTICE). See [LICENSE](LICENSE). Inspired by and built on
-[Michii Patches](https://github.com/heyymichii/michii-patches) by heyymichii.
+[Michii Patches](https://github.com/heyymichii/michii-patches) by heyymichii. The microG RE check is adapted from [Hoo-dles' MicroG integration](https://github.com/hoo-dles/morphe-patches) (GPLv3).
 
 ---
 
