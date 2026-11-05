@@ -45,6 +45,22 @@ private object SduiRequestFingerprint : Fingerprint(
     name = "makeStreamingNetworkCall",
 )
 
+/** Tracker.sendViaLiTracker(eventName, event, ...): one of the two senders every analytics event leaves through. */
+private object SendViaLiTrackerFingerprint : Fingerprint(
+    definingClass = "Lcom/linkedin/android/litrackinglib/metric/Tracker;",
+    name = "sendViaLiTracker",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;", "Ljava/util/Map;", "Z"),
+)
+
+/** MetricQueue.sendViaTfe(eventName, bytes, event): the other sender. */
+private object SendViaTfeFingerprint : Fingerprint(
+    definingClass = "Lcom/linkedin/android/litrackinglib/network/MetricQueue;",
+    name = "sendViaTfe",
+    returnType = "V",
+    parameters = listOf("Ljava/lang/String;", "[B", "Ljava/util/Map;"),
+)
+
 @Suppress("unused")
 val anonymousProfileViewingPatch = bytecodePatch(
     name = "Anonymous profile viewing",
@@ -77,6 +93,32 @@ val anonymousProfileViewingPatch = bytecodePatch(
             0,
             "invoke-static/range { p1 .. p4 }, $EXTENSION_PACKAGE/LokiPatches;->onSduiRequest(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V"
         )
+
+        // Both senders have locals, so v0 is free at their entry.
+        SendViaLiTrackerFingerprint.method.apply {
+            addInstructionsWithLabels(
+                0,
+                """
+                    invoke-static/range { p1 .. p2 }, $EXTENSION_PACKAGE/LokiPatches;->dropLiTrackerEvent(Ljava/lang/Object;Ljava/lang/Object;)Z
+                    move-result v0
+                    if-eqz v0, :send
+                    return-void
+                """,
+                ExternalLabel("send", getInstruction(0))
+            )
+        }
+        SendViaTfeFingerprint.method.apply {
+            addInstructionsWithLabels(
+                0,
+                """
+                    invoke-static/range { p1 .. p3 }, $EXTENSION_PACKAGE/LokiPatches;->dropTfeEvent(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z
+                    move-result v0
+                    if-eqz v0, :send
+                    return-void
+                """,
+                ExternalLabel("send", getInstruction(0))
+            )
+        }
 
         TrackerSendFingerprint.method.apply {
             // The method has locals, so v0 is free at its entry. p1 is the event.

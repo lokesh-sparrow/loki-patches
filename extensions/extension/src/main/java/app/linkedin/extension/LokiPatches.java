@@ -59,6 +59,54 @@ public final class LokiPatches {
         }
     }
 
+    /** Injection point, at the start of Tracker.sendViaLiTracker(eventName, event, ...). */
+    public static boolean dropLiTrackerEvent(Object eventName, Object event) {
+        return dropOutgoingEvent(eventName, event, "LiTracker");
+    }
+
+    /** Injection point, at the start of MetricQueue.sendViaTfe(eventName, bytes, event). */
+    public static boolean dropTfeEvent(Object eventName, Object bytes, Object event) {
+        return dropOutgoingEvent(eventName, event, "TFE");
+    }
+
+    /**
+     * Every analytics event leaves the app through one of LinkedIn's two senders, as a map with its page. With
+     * Anonymous profile viewing, every event of a profile page is dropped (its page view, impressions and any profile
+     * view event), so nothing the app sends says a profile was seen.
+     *
+     * @return true to drop the event.
+     */
+    private static boolean dropOutgoingEvent(Object eventName, Object event, String route) {
+        try {
+            String name = String.valueOf(eventName);
+            String page = findString(event, 0);
+            boolean profile = name.contains("ProfileView") || (page != null && page.toLowerCase().contains("profile"));
+            boolean drop = profile && Settings.anonymousProfileViewing();
+            if (profile && Settings.debug()) {
+                Settings.debugLog("tracking out " + route + ": " + name + " page=" + page + (drop ? " dropped" : " sent"));
+            }
+            return drop;
+        } catch (Throwable t) {
+            Diagnostics.error("dropOutgoingEvent failed", t);
+            return false;
+        }
+    }
+
+    /** The first pageUrn or pageKey string in an event map, a few levels deep. */
+    private static String findString(Object value, int depth) {
+        if (!(value instanceof java.util.Map) || depth > 4) return null;
+        java.util.Map<?, ?> map = (java.util.Map<?, ?>) value;
+        for (String key : new String[]{"pageUrn", "pageKey"}) {
+            Object found = map.get(key);
+            if (found instanceof String) return (String) found;
+        }
+        for (Object child : map.values()) {
+            String found = findString(child, depth + 1);
+            if (found != null) return found;
+        }
+        return null;
+    }
+
     private static final java.util.Map<Class<?>, Boolean> profileViewEvents =
             new java.util.concurrent.ConcurrentHashMap<>();
 
