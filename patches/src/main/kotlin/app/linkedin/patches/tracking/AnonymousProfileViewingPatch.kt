@@ -5,6 +5,7 @@ import app.linkedin.patches.shared.Constants.EXTENSION_PACKAGE
 import app.linkedin.patches.shared.markIncluded
 import app.linkedin.patches.shared.settingsPatch
 import app.morphe.patcher.Fingerprint
+import app.morphe.patcher.extensions.InstructionExtensions.addInstruction
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
 import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
@@ -35,6 +36,15 @@ private object TrackerSendFingerprint : Fingerprint(
     ),
 )
 
+/**
+ * SduiRepository.makeStreamingNetworkCall(namespace, name, request, route, ...): the requests of the server driven
+ * screens and actions, logged to find what records a profile visit.
+ */
+private object SduiRequestFingerprint : Fingerprint(
+    definingClass = "Lcom/linkedin/android/infra/sdui/repo/SduiRepository;",
+    name = "makeStreamingNetworkCall",
+)
+
 @Suppress("unused")
 val anonymousProfileViewingPatch = bytecodePatch(
     name = "Anonymous profile viewing",
@@ -61,6 +71,12 @@ val anonymousProfileViewingPatch = bytecodePatch(
                 ExternalLabel("send", getInstruction(0))
             )
         }
+
+        // p1..p4 are the namespace, the name, the request and the route: all objects, so no scratch register is needed.
+        SduiRequestFingerprint.method.addInstruction(
+            0,
+            "invoke-static/range { p1 .. p4 }, $EXTENSION_PACKAGE/LokiPatches;->onSduiRequest(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V"
+        )
 
         TrackerSendFingerprint.method.apply {
             // The method has locals, so v0 is free at its entry. p1 is the event.

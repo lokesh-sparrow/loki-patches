@@ -41,6 +41,24 @@ public final class LokiPatches {
         }
     }
 
+    /**
+     * Injection point, at the start of SduiRepository.makeStreamingNetworkCall(namespace, name, request, route, ...):
+     * every request of the server driven screens and actions. Only written with diagnostic logging, to find the
+     * request that records a profile visit.
+     */
+    public static void onSduiRequest(Object namespace, Object name, Object request, Object route) {
+        try {
+            if (!Settings.debug()) return;
+            String body = String.valueOf(request);
+            if (body.length() > 240) body = body.substring(0, 240) + "...";
+            Settings.debugLog("sdui request on " + SduiMediaDownload.resumedScreen().replaceAll(".*\\.", "")
+                    + ": " + namespace + " / " + name + " / " + route + " / "
+                    + (request == null ? "null" : request.getClass().getSimpleName()) + " " + body.replace('\n', ' '));
+        } catch (Throwable t) {
+            Diagnostics.error("onSduiRequest failed", t);
+        }
+    }
+
     private static final java.util.Map<Class<?>, Boolean> profileViewEvents =
             new java.util.concurrent.ConcurrentHashMap<>();
 

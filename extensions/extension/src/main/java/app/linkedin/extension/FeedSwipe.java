@@ -99,7 +99,7 @@ public final class FeedSwipe {
                 if (scrollsSideways(info) || PAGES.matcher(label(info)).find()) {
                     info.getBoundsInScreen(bounds);
                     if (bounds.contains(startX, startY)) {
-                        Settings.debugLog("feed swipe: left to a carousel or document");
+                        Settings.debugLog("feed swipe: left to a carousel or document (" + label(info) + " " + bounds + ")");
                         return false;
                     }
                 }
@@ -117,8 +117,11 @@ public final class FeedSwipe {
             if (found[0] != null) {
                 target = new Rect();
                 found[0].getGlobalVisibleRect(target);
-                targetSelected = found[0].isSelected() || (found[0].getParent() instanceof View
-                        && ((View) found[0].getParent()).isSelected());
+                // The tab's own state, as TalkBack would read it; the parents (the whole bar) are not reliable.
+                AccessibilityNodeInfo info = found[0].createAccessibilityNodeInfo();
+                targetSelected = found[0].isSelected() || info.isSelected() || info.isChecked();
+                Settings.debugLog("feed swipe: native tab " + (tab == 0 ? "Grow" : "Catch up") + " at " + target
+                        + " selected=" + targetSelected);
             }
         }
         if (target == null || target.isEmpty()) {
@@ -147,8 +150,11 @@ public final class FeedSwipe {
                 : description != null ? description.toString() : "";
         boolean match = tab == 0 ? label.startsWith("Grow") : label.startsWith("Catch up");
         if (match && view.isShown() && view.getWidth() > 0) {
-            out[0] = view;
-            return;
+            Rect visible = new Rect();
+            if (view.getGlobalVisibleRect(visible) && !visible.isEmpty()) {
+                out[0] = view;
+                return;
+            }
         }
         if (view instanceof ViewGroup) {
             ViewGroup group = (ViewGroup) view;
