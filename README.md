@@ -37,11 +37,16 @@
 | ⬇️ **Downloads** | Photos and videos in full screen (one or **all** of a post), profile photos and banners, in the best quality |
 | 📄 **Documents as PDF** | Save a post's document or carousel as one PDF file |
 | 🧹 **Feed filters** | Focus mode, and hide suggested posts, celebrations, job cards, network activity, videos, AI suggestions and more |
-| 🕵️ **Anonymous profile viewing** | Visit profiles without showing up in their "Who viewed your profile", while you keep seeing yours (experimental) |
+| 🕵️ **Anonymous profile viewing** | Visit profiles without showing up in their "Who viewed your profile" (experimental) |
 | 👻 **Ghost mode** | Chat without the typing indicator or automatic read receipts |
 | 🔗 **Clean links** | Open outside links directly, strip tracking from links you share |
 | 🛡️ **Block tracking** | Stop most of LinkedIn's analytics |
 | 🎨 **Material You** | Your wallpaper's colors, and an optional flat feed without gaps |
+| ⚫ **AMOLED black bars** | Pure black top bar, bottom bar and side menu in dark mode (needs Material You) |
+| 👆 **Swipe between feeds** | Swipe left or right to switch For you and Network, and Grow and Catch up |
+| 🖼️ **Tap to hide in viewers** | Tap a document or video in full screen to hide its caption and buttons |
+| ⋯ **Post menu items** | Copy text, Download media and Save as PDF in a post's menu |
+| 🧭 **Hide bottom tabs** | Take My Network and Jobs out of the bottom bar |
 | 🔑 **Google sign-in** | "Continue with Google" through microG RE |
 
 ### Copy text
@@ -95,7 +100,7 @@ also search the options, back up and restore them, check for updates and pick th
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
 | [AMOLED black bars](#amoled-black-bars) | Makes the dark top bar, bottom bar, side menu and other screens drawn by the app pure black, next to the feed that the AMOLED black setting already covers. Needs Material You. |  |
-| [Anonymous profile viewing](#anonymous-profile-viewing) | Adds an option (off by default, experimental) to visit profiles without sending the profile view event, while you keep seeing who viewed your own profile. |  |
+| [Anonymous profile viewing](#anonymous-profile-viewing) | Adds an option (off by default, experimental) to visit profiles without being listed in "Who viewed your profile": the analytics events of profile pages are not sent. |  |
 | [Block tracking](#block-tracking) | Adds an option (off by default) to stop sending most LinkedIn analytics events. |  |
 | [Copy text](#copy-text) | Long press a post, comment or any other text to select and copy it in place, like on Reddit. |  |
 | [Disable double-tap like](#disable-double-tap-like) | Stops double tapping a post or photo from liking it. |  |
@@ -128,8 +133,9 @@ LinkedIn has its own settings for both, and Loki Patches leaves them to LinkedIn
 Autoplay videos → Never**, and **Settings → Visibility → Manage active status → No one**.
 
 **Is anonymous profile viewing reliable?**
-It's experimental. It stops the app from reporting your visit, and LinkedIn records profile views from that report,
-but the server could also count a visit on its own. If someone still sees you, please report it.
+It's experimental. It stops the app from sending the analytics events of profile pages, which is how LinkedIn
+counted visits in our tests on 4.1.1267. LinkedIn could change that in an update. If someone still sees you, please
+report it.
 
 **I can't find the Loki Patches settings.**
 The app icon shortcut appears after LinkedIn has been opened once, and some launchers don't show it, so use

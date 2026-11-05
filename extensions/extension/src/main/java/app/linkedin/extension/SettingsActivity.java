@@ -319,7 +319,7 @@ public final class SettingsActivity extends Activity {
             }
             if (Settings.isAnonymousProfileViewingIncluded()) {
                 privacy.toggle(Settings.ANONYMOUS_PROFILE_VIEWING, false, "Anonymous profile viewing",
-                        "Visit profiles without telling LinkedIn, while you still see who viewed yours. Experimental.");
+                        "Doesn't send the analytics events of profile pages, so your visits aren't listed in other people's viewers. Experimental.");
             }
             if (Settings.isBlockTrackingIncluded()) {
                 privacy.toggle(Settings.BLOCK_TRACKING, false, "Block tracking",
