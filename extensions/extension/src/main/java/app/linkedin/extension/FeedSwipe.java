@@ -106,7 +106,11 @@ public final class FeedSwipe {
                 if (tabIndex(info) == tab) {
                     target = new Rect();
                     info.getBoundsInScreen(target);
-                    targetSelected = isSelected(info);
+                    targetSelected = isSelected(info) && !myNetworkTab(info);
+                    if (myNetworkTab(info)) {
+                        Settings.debugLog("feed swipe: tab " + label(info) + " " + target + " selected="
+                                + isSelected(info));
+                    }
                 }
             }
         }
@@ -119,7 +123,7 @@ public final class FeedSwipe {
                 found[0].getGlobalVisibleRect(target);
                 // The tab's own state, as TalkBack would read it; the parents (the whole bar) are not reliable.
                 AccessibilityNodeInfo info = found[0].createAccessibilityNodeInfo();
-                targetSelected = found[0].isSelected() || info.isSelected() || info.isChecked();
+                targetSelected = false;
                 Settings.debugLog("feed swipe: native tab " + (tab == 0 ? "Grow" : "Catch up") + " at " + target
                         + " selected=" + targetSelected);
             }
@@ -129,10 +133,16 @@ public final class FeedSwipe {
             return false;
         }
         // Swiping toward the open tab does nothing, but it must not open a photo either.
-        if (targetSelected) return true;
+        if (targetSelected) {
+            Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network") + " is open already");
+            return true;
+        }
         // Nested Compose views can each see the same swipe.
         long now = SystemClock.uptimeMillis();
-        if (now - lastSwitch < 700) return true;
+        if (now - lastSwitch < 700) {
+            Settings.debugLog("feed swipe: ignored, switched just now");
+            return true;
+        }
         lastSwitch = now;
         Settings.debugLog("feed swipe: " + (tab == 0 ? "For you" : "Network"));
         // After the swipe's own touch has finished.
@@ -193,6 +203,12 @@ public final class FeedSwipe {
         if (label.startsWith("For you") || label.startsWith("Grow") || label.contains(", 1 of 2")) return 0;
         if (label.startsWith("Network") || label.startsWith("Catch up") || label.contains(", 2 of 2")) return 1;
         return -1;
+    }
+
+    /** The Grow and Catch up tabs of My Network. */
+    private static boolean myNetworkTab(AccessibilityNodeInfo info) {
+        String label = label(info);
+        return label.startsWith("Grow") || label.startsWith("Catch up");
     }
 
     private static boolean isSelected(AccessibilityNodeInfo info) {
