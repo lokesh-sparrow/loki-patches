@@ -110,6 +110,17 @@ public final class FeedSwipe {
                 }
             }
         }
+        if (target == null) {
+            // The tabs of My Network (Grow, Catch up) are regular views, not Compose.
+            View[] found = new View[1];
+            findNativeTab(view.getRootView(), tab, found);
+            if (found[0] != null) {
+                target = new Rect();
+                found[0].getGlobalVisibleRect(target);
+                targetSelected = found[0].isSelected() || (found[0].getParent() instanceof View
+                        && ((View) found[0].getParent()).isSelected());
+            }
+        }
         if (target == null || target.isEmpty()) {
             Settings.debugLog("feed swipe: tabs not on screen (" + composeViews.size() + " views)");
             return false;
@@ -125,6 +136,24 @@ public final class FeedSwipe {
         final Rect tabBounds = target;
         MAIN.post(() -> tap(view.getRootView(), tabBounds.exactCenterX(), tabBounds.exactCenterY()));
         return true;
+    }
+
+    /** A shown view labeled with a tab name (text or description), for the tabs that are not drawn by Compose. */
+    private static void findNativeTab(View view, int tab, View[] out) {
+        if (out[0] != null || view.getVisibility() != View.VISIBLE) return;
+        CharSequence text = view instanceof android.widget.TextView ? ((android.widget.TextView) view).getText() : null;
+        CharSequence description = view.getContentDescription();
+        String label = text != null && text.length() > 0 ? text.toString()
+                : description != null ? description.toString() : "";
+        boolean match = tab == 0 ? label.startsWith("Grow") : label.startsWith("Catch up");
+        if (match && view.isShown() && view.getWidth() > 0) {
+            out[0] = view;
+            return;
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
+            for (int i = 0; i < group.getChildCount(); i++) findNativeTab(group.getChildAt(i), tab, out);
+        }
     }
 
     private static void findComposeViews(View view, List<View> out) {
