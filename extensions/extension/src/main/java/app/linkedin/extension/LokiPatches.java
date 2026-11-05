@@ -47,7 +47,8 @@ public final class LokiPatches {
      */
     public static boolean skipProfileViewEvent() {
         boolean skip = Settings.anonymousProfileViewing();
-        if (skip) Settings.debugLog("profile view event not sent");
+        Settings.debugLog(skip ? "profile view event not sent"
+                : "profile view event sent (Anonymous profile viewing is off)");
         return skip;
     }
 }
