@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-07T15:21:38",
-  "description": "## [1.2.2](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.1...v1.2.2) (2026-11-07)\n\n### 🚀 Updated App Support\n\n* **LinkedIn:** support 4.1.1270 and 4.1.1269 ([4c125f7](https://github.com/lokesh-sparrow/loki-patches/commit/4c125f732b285a7889a2ddfba6ac0c4c32391643))",
-  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.2.2/patches-1.2.2.mpp",
+  "created_at": "2026-11-07T16:25:47",
+  "description": "## [1.2.3](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.2...v1.2.3) (2026-11-07)\n\n### 🐛 Bug Fixes\n\n* **Diagnostics:** write the log as loki_log.txt ([14986f8](https://github.com/lokesh-sparrow/loki-patches/commit/14986f81a3d7b26bdc1b1ffe9902612562335c01))",
+  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.2.3/patches-1.2.3.mpp",
   "signature_download_url": "",
-  "version": "1.2.2"
+  "version": "1.2.3"
 }
