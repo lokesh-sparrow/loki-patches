@@ -1,6 +1,6 @@
 {
   "created_at": "2026-11-07T16:25:47",
-  "description": "## [1.2.3](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.2...v1.2.3) (2026-11-07)\n\n### 🐛 Bug Fixes\n\n* **Diagnostics:** write the log as loki_log.txt ([14986f8](https://github.com/lokesh-sparrow/loki-patches/commit/14986f81a3d7b26bdc1b1ffe9902612562335c01))",
+  "description": "## Fixes\n- Diagnostic log: the file is renamed to loki_log.txt.\n\n**22 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).",
   "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.2.3/patches-1.2.3.mpp",
   "signature_download_url": "",
   "version": "1.2.3"
