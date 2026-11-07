@@ -1,3 +1,9 @@
+## [1.2.2](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.1...v1.2.2) (2026-11-07)
+
+### 🚀 Updated App Support
+
+* **LinkedIn:** support 4.1.1270 and 4.1.1269 ([4c125f7](https://github.com/lokesh-sparrow/loki-patches/commit/4c125f732b285a7889a2ddfba6ac0c4c32391643))
+
 ## 1.2.1 (2026-11-06)
 
 ### What's New
