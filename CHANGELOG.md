@@ -1,3 +1,11 @@
+## [1.2.4](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.3...v1.2.4) (2026-11-07)
+
+### 🐛 Bug Fixes
+
+* **Diagnostics:** delete the old log file once ([1db353d](https://github.com/lokesh-sparrow/loki-patches/commit/1db353de5571420e4d5cb82f4bd99c4223a50585))
+* **Feed swipe:** find the Grow tab when it is not exposed to accessibility ([e69164c](https://github.com/lokesh-sparrow/loki-patches/commit/e69164c0961bc49be48109de57e5801b713f5ed5))
+* **Viewers:** make the download button follow the viewer's own controls ([31cd2a0](https://github.com/lokesh-sparrow/loki-patches/commit/31cd2a0d1c20be2b999800b16a6d5116f0f2a4ce))
+
 ## 1.2.3 (2026-11-07)
 
 ### Fixes
