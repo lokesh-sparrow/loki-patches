@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  * The report removes links, IDs, and e-mail addresses.
  */
 final class Diagnostics {
-    private static final String FILE_NAME = "michii_log.txt";
+    private static final String FILE_NAME = "loki_log.txt";
     /** The file is cut to the newest half when it grows past this size. */
     private static final int MAX_BYTES = 300 * 1024;
     private static final int REPORT_LINES = 200;
