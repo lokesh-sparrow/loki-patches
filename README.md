@@ -49,6 +49,17 @@
 | 🧭 **Hide bottom tabs** | Take My Network and Jobs out of the bottom bar |
 | 🔑 **Google sign-in** | "Continue with Google" through microG RE |
 
+### Anonymous profile viewing
+
+Visit a profile without it appearing in that member's "Who viewed your profile", or in company page visitor lists.
+
+1. Turn on **Anonymous profile viewing** in the Loki Patches settings, under **Privacy**. It is off by default and
+   marked experimental.
+2. Open profiles as usual. The app leaves out the analytics events that profile pages send, so the visit is not counted.
+
+It works by not sending those events, not by hiding the visit on the server. LinkedIn can change what a profile page
+sends in any update; if a visit still appears, please report it with the diagnostic log.
+
 ### Copy text
 
 LinkedIn doesn't let you copy what people write. With Loki Patches you can:
