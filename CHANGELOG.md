@@ -1,3 +1,11 @@
+## [1.2.5](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.4...v1.2.5) (2026-11-08)
+
+### 🐛 Bug Fixes
+
+* **post-menu:** give Copy text, Download and Save their own icons, and copy the post ([1c8e827](https://github.com/lokesh-sparrow/loki-patches/commit/1c8e827e5b158569e8f55831eaf52325fe11b948))
+* **swipe:** a parked Copy text selection no longer blocks the feed swipe ([081d3d6](https://github.com/lokesh-sparrow/loki-patches/commit/081d3d67dc4be99b16bbc97c8302c1c599f52a1c))
+* **viewer:** keep the video download button for every video ([401cc8d](https://github.com/lokesh-sparrow/loki-patches/commit/401cc8dac0446c9376ff9600a5fa30d8043eefd9))
+
 ## 1.2.4 (2026-11-07)
 
 ### Fixes

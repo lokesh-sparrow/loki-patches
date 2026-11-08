@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-07T19:45:07",
-  "description": "## Fixes\n- Download media: the button hides and shows with the viewer's own controls, and stays hidden while a video plays full screen instead of floating over it.\n- Swipe between feeds: swiping back to Grow on My Network works again.\n\n**22 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).",
-  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.2.4/patches-1.2.4.mpp",
+  "created_at": "2026-11-08T18:15:18",
+  "description": "## [1.2.5](https://github.com/lokesh-sparrow/loki-patches/compare/v1.2.4...v1.2.5) (2026-11-08)\n\n### 🐛 Bug Fixes\n\n* **post-menu:** give Copy text, Download and Save their own icons, and copy the post ([1c8e827](https://github.com/lokesh-sparrow/loki-patches/commit/1c8e827e5b158569e8f55831eaf52325fe11b948))\n* **swipe:** a parked Copy text selection no longer blocks the feed swipe ([081d3d6](https://github.com/lokesh-sparrow/loki-patches/commit/081d3d67dc4be99b16bbc97c8302c1c599f52a1c))\n* **viewer:** keep the video download button for every video ([401cc8d](https://github.com/lokesh-sparrow/loki-patches/commit/401cc8dac0446c9376ff9600a5fa30d8043eefd9))",
+  "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v1.2.5/patches-1.2.5.mpp",
   "signature_download_url": "",
-  "version": "1.2.4"
+  "version": "1.2.5"
 }
