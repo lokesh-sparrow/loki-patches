@@ -1,6 +1,6 @@
 {
   "created_at": "2026-11-10T09:55:56",
-  "description": "## [2.1.0](https://github.com/lokesh-sparrow/loki-patches/compare/v2.0.0...v2.1.0) (2026-11-10)\n\n### 🐛 Bug Fixes\n\n* **swipe:** find the hidden My Network tab from the tab row on screen, also after Search ([eef9017](https://github.com/lokesh-sparrow/loki-patches/commit/eef9017ed7df55d26bc841882b744c6179fded00))\n\n### ✨ New Features\n\n* **theme:** optional Dark app icon ([3ddb049](https://github.com/lokesh-sparrow/loki-patches/commit/3ddb04912e0d9eeb8048ce26e675d3df64fc2c4b))",
+  "description": "### New Features\n- Dark app icon: optional black launcher icon (off by default).\n\n### Fixes\n- Swipe between feeds: My Network tabs now switch reliably on every screen size, including Catch up after Search.\n\n**23 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).",
   "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v2.1.0/patches-2.1.0.mpp",
   "signature_download_url": "",
   "version": "2.1.0"
