@@ -1,6 +1,6 @@
 {
   "created_at": "2026-11-10T13:56:21",
-  "description": "## [2.1.1](https://github.com/lokesh-sparrow/loki-patches/compare/v2.1.0...v2.1.1) (2026-11-10)\n\n### 🐛 Bug Fixes\n\n* **premium:** close the empty Premium takeover page instead of leaving a black screen ([74fd687](https://github.com/lokesh-sparrow/loki-patches/commit/74fd6878a3efde8fcce6c760957415c47113cb99))",
+  "description": "### Fixes\n- Hide Premium upsells: the full screen Premium takeover that LinkedIn opens when the feed loads is closed as soon as its content is hidden, so it no longer leaves a black page. Pressing back is no longer needed.\n\n**23 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).",
   "download_url": "https://github.com/lokesh-sparrow/loki-patches/releases/download/v2.1.1/patches-2.1.1.mpp",
   "signature_download_url": "",
   "version": "2.1.1"
