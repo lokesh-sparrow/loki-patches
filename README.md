@@ -43,6 +43,7 @@
 | 🛡️ **Block tracking** | Stop most of LinkedIn's analytics |
 | 🎨 **Material You** | Your wallpaper's colors, and an optional flat feed without gaps |
 | ⚫ **AMOLED black bars** | Pure black top bar, bottom bar and side menu in dark mode (needs Material You) |
+| 🖤 **Dark app icon** | Black launcher icon with the white "in", instead of LinkedIn's blue (optional) |
 | 👆 **Swipe between feeds** | Swipe left or right to switch For you and Network, and Grow and Catch up |
 | 🖼️ **Tap to hide in viewers** | Tap a document or video in full screen to hide its caption and buttons |
 | ⋯ **Post menu items** | Copy text, Download media and Save as PDF in a post's menu |

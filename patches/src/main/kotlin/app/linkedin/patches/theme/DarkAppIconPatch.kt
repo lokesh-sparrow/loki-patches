@@ -39,7 +39,7 @@ private fun Element.fillColorName(): String? {
 val darkAppIconPatch = resourcePatch(
     name = "Dark app icon",
     description = "Black launcher icon with the white \"in\", instead of LinkedIn's blue. Chosen when patching: " +
-        "a launcher icon cannot switch with dark mode on its own. The Android 12 splash screen turns black too.",
+        "a launcher icon cannot switch with dark mode on its own.",
     default = false
 ) {
     compatibleWith(COMPATIBILITY_LINKEDIN)
