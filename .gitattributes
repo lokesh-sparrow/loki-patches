@@ -1,0 +1,7 @@
+# Copyright (C) 2026 Lokesh Sparrow
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Line endings. The Gradle wrapper script is run by bash on Linux, so it has to keep LF;
+# the Windows batch launchers need CRLF or cmd.exe misreads them.
+/gradlew  text eol=lf
+*.bat     text eol=crlf

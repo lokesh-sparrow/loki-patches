@@ -1,0 +1,83 @@
+# Copyright (C) 2026 Lokesh Sparrow
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# --- Gradle output ---
+.gradle
+.gradletasknamecache
+**/build/
+# build/ folders that hold vendored sources, not output
+!src/**/build/
+
+# --- IDE and tooling state ---
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+# IntelliJ keeps per-project state in .idea; these paths churn constantly.
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/**/contentModel.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/artifacts
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+.idea_modules/
+.idea/httpRequests
+.idea/replstate.xml
+.idea/caches/build_file_checksums.ser
+out/
+
+# --- Build artefacts ---
+*.class
+# Keep compiled archives out of the tree; the wrapper jar below is the exception.
+*.jar
+!gradle-wrapper.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+# A patched LinkedIn is someone else's copyright, so APKs never belong here.
+*.apk
+# Dependency installs
+node_modules/
+
+# --- Logs and crash dumps ---
+*.log
+hs_err_pid*
+*.ctxt
+.mtj.tmp/
+
+# --- Android Studio / IntelliJ plugins ---
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+atlassian-ide-plugin.xml
+
+# --- CMake ---
+cmake-build-*/
+
+# --- Machine-local files ---
+# gradle.properties may hold the GitHub Packages token, so it is not shared.
+./gradle.properties
+local.properties
+gradle-app.setting
+# Scratch work
+_work/
