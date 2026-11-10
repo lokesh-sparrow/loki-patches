@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/lokesh-sparrow/loki-patches/compare/v2.1.0...v2.1.1) (2026-11-10)
+
+### 🐛 Bug Fixes
+
+* **premium:** close the empty Premium takeover page instead of leaving a black screen ([74fd687](https://github.com/lokesh-sparrow/loki-patches/commit/74fd6878a3efde8fcce6c760957415c47113cb99))
+
 ## 2.1.0 (2026-11-10)
 
 ### New Features
