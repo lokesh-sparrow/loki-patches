@@ -1,8 +1,9 @@
-## [2.1.2](https://github.com/lokesh-sparrow/loki-patches/compare/v2.1.1...v2.1.2) (2026-11-13)
+## 2.1.2 (2026-11-13)
 
-### 🐛 Bug Fixes
+### Fixes
+- GmsCore support: LinkedIn push notifications work again. Google refused the patched app's push registration, so no notification ever arrived; it now registers with MicroG-RE like the original app.
 
-* **gmscore:** send LinkedIn's own certificate to Firebase so push notifications register ([6e19f92](https://github.com/lokesh-sparrow/loki-patches/commit/6e19f92e0b6314476b0f208dbd9a6a88cca5d587))
+**23 patches in total.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#patches).
 
 ## 2.1.1 (2026-11-10)
 
