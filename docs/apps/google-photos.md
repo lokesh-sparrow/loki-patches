@@ -1,31 +1,41 @@
-# Google Photos
+<!-- HEADER_START -->
+# <img src="../../assets/icons/com.google.android.apps.photos.png" width="36" height="36" align="top" alt=""> Google Photos
 
-**Patch file:** APKM (bundle — base plus ABI and density splits)
-**Supported versions:** 8.1.0 (others can be tried with *Experimental*)
-**Where Loki Patches lives:** the account menu — tap your avatar in the top right
+![version](https://img.shields.io/badge/version-8.1.0.1023737660-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-4-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APKM%20%28Android%208%2B%29-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Account%20menu-6e7681?style=for-the-badge&labelColor=0d1117)
 
-## Patches
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.google.android.apps.photos`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.4.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.4.0)
 
-| Patch | Default | Switch | What it does |
-|---|---|---|---|
-| Unlimited backup (Pixel XL) | On | Yes (one switch for both halves) | One switch, two halves that only work together: Photos is told it holds the original Pixel XL entitlement, **and** every upload reports this phone as a Pixel XL, so Google marks it free. A newly backed-up photo then reads "This item doesn't take up space in your account storage". Google lists the phone as a Pixel XL under your account's devices. Creations Google renders on its servers (memories, collages) still use your quota |
-| Only real camera photos count as Camera | On | Yes | Photos treats everything under `DCIM` as camera roll, so screenshots and other apps' DCIM folders are uploaded with Camera and cannot be switched off. With this on, only `DCIM/Camera` counts and the rest become ordinary folders you choose in Photos › Backup › Backup device folders |
-| GmsCore support (Google Photos) | On | No | Sign-in and push through MicroG-RE, and the "This device isn't Play Protect certified" screen is never shown. MicroG-RE must be installed and signed in to the same Google account |
-| Install next to the original | On | No | The patched app installs as `com.google.android.apps.photos.loki` beside the preinstalled Photos. Providers and permissions are renamed so Android accepts both; nothing has to be uninstalled and the stock app keeps working |
-| Remove ads and trackers | Off | — | General ad and tracker removal, shared by every app in the bundle |
-| Block advertising ID | Off | — | Answers the advertising-id call with zeroes |
-| Remove analytics and crash reporting | Off | — | Stops the app's own analytics and crash uploads |
-| Change package name | Off | — | Installs beside the original app (already the case here; the clone patch uses it) |
+**🎯 Supported versions:** `8.1.0.1023737660`
+<!-- HEADER_END -->
+
+## Features
+
+| Feature | What you get |
+|---|---|
+| 💾 **Unlimited backup** | Photos and videos back up at original quality without counting against your Google storage. A newly backed-up photo reads "This item doesn't take up space in your account storage". |
+| 📷 **Real camera folder** | Only `DCIM/Camera` counts as Camera. Screenshots and other apps' DCIM folders become ordinary folders you choose in Photos › Backup › Backup device folders. |
+| 🔑 **Google sign-in** | Sign-in and notifications go through MicroG-RE; the "This device isn't Play Protect certified" screen is never shown. |
+| 👯 **Next to the original** | Installs as `com.google.android.apps.photos.loki` beside the preinstalled Photos; nothing has to be uninstalled. |
+
+**Where Loki Patches lives:** the account menu - tap your avatar in the top right.
 
 ## What to expect
 
-- **Photos uploaded before the switch was on stay charged.** Google decides what an upload costs once, at upload time.
-- **Existing photos already in your account** are not re-evaluated.
+- **Photos uploaded before the patch stay charged.** Google decides what an upload costs once, at upload time; existing photos are not re-evaluated.
 - **The phone shows as a Pixel XL** in your Google account's device list. That is the identity every upload reports.
-- **Camera folders:** with the camera patch on, Screenshots and other DCIM folders appear as separate folders in Photos' own backup settings instead of being uploaded as Camera.
-- **The patched app does not replace the stock one**, so both can be installed. Sign in inside the patched app only; using both to upload will charge the stock app's uploads.
+- **Creations Google renders on its servers** (memories, collages, animations) still use your quota.
+- **Sign in inside the patched app only.** Uploads made by the stock app are charged as usual.
+- **Background backup on Samsung:** set the patched Photos to *Unrestricted* battery use and keep it out of *Sleeping apps*, or backup may wait until you open the app.
 
-## Not included, on purpose
+## Questions
 
-- **Server-side storage waivers** for creations Google renders (memories, collages, animations).
-- **Build-property spoofing** of the whole system: the patch only changes what Photos itself reads and sends.
+**Do I need MicroG-RE?**
+Yes. Install MicroG-RE and sign in to the same Google account before opening the patched Photos.
+
+**Is the photo file changed?**
+No. The camera still writes your real phone model into each photo's EXIF data; only the upload handshake reports a Pixel XL.
+
+## Patches
+
+<!-- PATCHES_START -->
+<!-- PATCHES_END -->
