@@ -38,4 +38,10 @@ No. The camera still writes your real phone model into each photo's EXIF data; o
 ## Patches
 
 <!-- PATCHES_START -->
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|---|---|---|
+| **GmsCore support (Google Photos)** | Routes Google sign-in and Firebase push through MicroG-RE (GmsCore) instead of Google Play services, and signs the push registration with Google Photos' original certificate, so the account backs up from a re-signed build. MicroG-RE has to be installed and signed in to the same Google account. |  |
+| **Install next to the original (Google Photos)** | Installs the patched Google Photos as a separate app (package name + ".loki"), so the Photos that came with the phone does not have to be removed. Needs "GmsCore support (Google Photos)" to sign in. Turn backup off in the original Photos so the two do not both upload. |  |
+| **Only real camera photos count as Camera** | Google Photos treats everything under DCIM as Camera, so screenshots and other apps' DCIM folders are always backed up with it. Only DCIM/Camera counts; the rest become normal device folders you choose in Photos' own Backup settings. A switch in Loki Patches restores Photos' rule. |  |
+| **Unlimited backup (Pixel XL)** | One switch for the whole Pixel XL entitlement: Photos believes it may back up unlimited original-quality photos, and every upload reports this phone as a Pixel XL so Google marks it free. New photos then read "doesn't take up space in your account storage". Google lists the phone as a Pixel XL under your account's devices; creations Google renders on its servers still use your quota. |  |
 <!-- PATCHES_END -->
