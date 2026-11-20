@@ -11,7 +11,10 @@ import app.linkedin.patches.shared.markIncluded
 import app.linkedin.patches.shared.sduiComponentFilterPatch
 import app.morphe.patcher.Fingerprint
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.addInstructionsWithLabels
+import app.morphe.patcher.extensions.InstructionExtensions.getInstruction
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.smali.ExternalLabel
 
 private const val SETTINGS = "$EXTENSION_PACKAGE/Settings;"
 private const val UPSELL_SLOT =
@@ -70,6 +73,17 @@ private val mePanelResponse = Fingerprint(
     },
 )
 
+/**
+ * UniversalNavigationController.navigate(int, Bundle, NavOptions): every in-app navigation, including the server
+ * driven full screen Premium page (premium_upsell_full_page_takeover) that LinkedIn opens on its own after launch.
+ */
+private val universalNavigate = Fingerprint(
+    definingClass = "Lcom/linkedin/android/infra/navigation/UniversalNavigationController;",
+    name = "navigate",
+    returnType = "V",
+    parameters = listOf("I", "Landroid/os/Bundle;", "Lcom/linkedin/android/infra/navigation/NavOptions;"),
+)
+
 @Suppress("unused")
 val hidePremiumUpsellsPatch = bytecodePatch(
     name = "Hide Premium upsells",
@@ -91,5 +105,20 @@ val hidePremiumUpsellsPatch = bytecodePatch(
                 check-cast p2, $UPSELL_SLOT
             """
         )
+
+        // Never open the full screen Premium page: with its only component hidden it would flash an empty
+        // (black in dark mode) page before PremiumTakeover closes it again.
+        universalNavigate.method.apply {
+            addInstructionsWithLabels(
+                0,
+                """
+                    invoke-static/range { p2 .. p2 }, $EXTENSION_PACKAGE/PremiumTakeover;->blocksNavigation(Landroid/os/Bundle;)Z
+                    move-result v0
+                    if-eqz v0, :navigate
+                    return-void
+                """,
+                ExternalLabel("navigate", getInstruction(0))
+            )
+        }
     }
 }

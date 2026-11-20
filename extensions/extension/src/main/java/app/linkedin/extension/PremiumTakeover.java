@@ -7,6 +7,7 @@ package app.linkedin.extension;
 
 import android.app.Activity;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
@@ -22,9 +23,11 @@ import java.lang.reflect.Method;
  * It is only closed when it is really on screen: LinkedIn also reports this screen when it prepares it behind the
  * current one, and pressing back there would close something else.
  */
-final class PremiumTakeover {
+public final class PremiumTakeover {
     /** The nav destination of the takeover page; it keeps this name in every supported version. */
     private static final String SCREEN = ".premium.upsells.PremiumUpsellFullPageTakeoverNavGraphScreen";
+    /** The page key LinkedIn sends for the takeover page. */
+    private static final String PAGE_KEY = "premium_upsell_full_page_takeover";
     /** Time for the page to finish opening and for its component to be hidden before it is closed. */
     private static final long DELAY_MS = 400;
     /** A resuming screen can be reported more than once: close at most one page per this window. */
@@ -37,7 +40,30 @@ final class PremiumTakeover {
     private PremiumTakeover() {
     }
 
-    /** Called when a screen resumes. Closes the takeover page when it would show nothing. */
+    /**
+     * Injection point, at the start of UniversalNavigationController.navigate(int, Bundle, NavOptions).
+     *
+     * @return true to skip the navigation, so the takeover page is never opened instead of being closed again.
+     */
+    public static boolean blocksNavigation(Bundle arguments) {
+        try {
+            if (arguments == null || !Settings.hidePremium()) return false;
+            String screen = arguments.getString("sduiScreenId");
+            if (!PAGE_KEY.equals(arguments.getString("sduiPageKey")) && (screen == null || !screen.endsWith(SCREEN))) {
+                return false;
+            }
+            Settings.debugLog("premium takeover: navigation skipped");
+            return true;
+        } catch (Throwable failure) {
+            Diagnostics.error("checking the premium takeover navigation failed", failure);
+            return false;
+        }
+    }
+
+    /**
+     * Called when a screen resumes. Closes the takeover page when it would show nothing; a fallback for an entry
+     * point that does not go through {@link #blocksNavigation}.
+     */
     static void onScreenResumed(Activity host, Object fragment, String screen) {
         if (host == null || fragment == null || screen == null || !screen.endsWith(SCREEN)) return;
         if (!Settings.hidePremium()) return;
