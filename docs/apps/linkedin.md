@@ -1,11 +1,11 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/com.linkedin.android.svg" width="36" height="36" align="top" alt=""> LinkedIn
 
-![version](https://img.shields.io/badge/version-4.1.1272-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-23-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APK%20%28Android%2010%2B%29-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Me%20panel-6e7681?style=for-the-badge&labelColor=0d1117)
+![version](https://img.shields.io/badge/version-4.1.1276-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-23-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APK%20%28Android%2010%2B%29-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Me%20panel-6e7681?style=for-the-badge&labelColor=0d1117)
 
 [← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.linkedin.android`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.4.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.4.0)
 
-**🎯 Supported versions:** `4.1.1270` · `4.1.1272`
+**🎯 Supported versions:** `4.1.1272` · `4.1.1276`
 <!-- HEADER_END -->
 
 ## Features
@@ -27,6 +27,9 @@
 | 👆 **Swipe between feeds** | Swipe left or right to switch For you and Network, and Grow and Catch up |
 | 🖼️ **Tap to hide in viewers** | Tap a document or video in full screen to hide its caption and buttons |
 | ⋯ **Post menu items** | Copy text, Download media and Save as PDF in a post's menu |
+| 📸 **No screenshot share sheet** | Taking a screenshot of a post no longer opens LinkedIn's share sheet |
+| 📖 **Expand posts** | Long posts open already expanded, with no "…more" to tap (off by default, turn it on in Loki Patches → Feed) |
+| 🗂️ **More page rows** | Hide Puzzle games, Dashboard, Groups, Events or Newsletters one by one, instead of the whole More tab (all off by default) |
 | 🧭 **Hide bottom tabs** | Take My Network, Jobs and More out of the bottom bar (More hidden by default) |
 | 🔑 **Google sign-in** | "Continue with Google" through MicroG-RE |
 
