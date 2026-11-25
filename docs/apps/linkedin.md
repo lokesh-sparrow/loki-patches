@@ -1,9 +1,9 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/com.linkedin.android.svg" width="36" height="36" align="top" alt=""> LinkedIn
 
-![version](https://img.shields.io/badge/version-4.1.1276-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-23-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APK%20%28Android%2010%2B%29-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Me%20panel-6e7681?style=for-the-badge&labelColor=0d1117)
+![version](https://img.shields.io/badge/version-4.1.1276-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-25-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APK%20%28Android%2010%2B%29-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Me%20panel-6e7681?style=for-the-badge&labelColor=0d1117)
 
-[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.linkedin.android`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.4.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.4.0)
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.linkedin.android`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.5.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.5.0)
 
 **🎯 Supported versions:** `4.1.1272` · `4.1.1276`
 <!-- HEADER_END -->
@@ -99,7 +99,9 @@ The colors are read when the app is patched, and a few older screens in LinkedIn
 | **Copy text** | Long press a post, comment or any other text to select and copy it in place, like on Reddit. |  |
 | **Dark app icon** | Black launcher icon with the white "in", instead of LinkedIn's blue. Chosen when patching: a launcher icon cannot switch with dark mode on its own. |  |
 | **Disable double-tap like** | A double tap on a post or a photo no longer likes it. |  |
+| **Disable screenshot share sheet** | Taking a screenshot of a post no longer opens LinkedIn's share sheet. |  |
 | **Download media** | Puts a download button in the full screen photo, video and document viewer; documents (PDFs and carousels) are saved as a single PDF. |  |
+| **Expand posts** | Adds a switch (off by default) that opens long posts already expanded. |  |
 | **Feed filters** | Adds a set of filters that are off until turned on in Loki Patches: focus mode, celebrations, job cards, reposts, posts from other people's activity, "Recommended for you", video posts, games, the "New posts" pill and "See translation". |  |
 | **GmsCore support (LinkedIn)** | Routes "Continue with Google" and Firebase push through MicroG-RE (GmsCore) instead of Google Play services. Signs the FCM registration with LinkedIn's original certificate, so notifications still arrive on a re-signed build. MicroG-RE has to be installed and signed in to a Google account. |  |
 | **Hide ads** | Removes sponsored (promoted) posts from the feed. |  |

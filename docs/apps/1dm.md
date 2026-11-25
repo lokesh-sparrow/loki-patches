@@ -1,9 +1,11 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/idm.internet.download.manager.png" width="36" height="36" align="top" alt=""> 1DM
 
-**🎯 Supported versions:** `20.0 (30257)`
+![version](https://img.shields.io/badge/version-20.0-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-3-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APKM-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Navigation%20drawer-6e7681?style=for-the-badge&labelColor=0d1117)
 
-`idm.internet.download.manager`
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`idm.internet.download.manager`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.5.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.5.0)
+
+**🎯 Supported versions:** `20.0`
 <!-- HEADER_END -->
 
 ## Features
@@ -31,4 +33,9 @@
 ## Patches
 
 <!-- PATCHES_START -->
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|---|---|---|
+| **Remove 1DM+ promotions** | Removes the app's own upsell: the "Install 1DM+" banner at the bottom, the "Install Shoppers Search" button on the empty download list and the offer strip under the tabs. |  |
+| **Remove ads (1DM)** | Removes the ads in 1DM: banners, full-screen ads and the prompts that offer a reward for watching one. |  |
+| **Rename to IDM+** | Shows the app as IDM+ instead of 1DM, in the launcher and everywhere inside the app. |  |
 <!-- PATCHES_END -->

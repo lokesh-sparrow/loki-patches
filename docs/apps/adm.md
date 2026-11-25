@@ -1,9 +1,11 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/com.dv.adm.png" width="36" height="36" align="top" alt=""> ADM
 
-**🎯 Supported versions:** `14.0.43`
+![version](https://img.shields.io/badge/version-14.0.43-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-1-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APKM-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Overflow%20menu-6e7681?style=for-the-badge&labelColor=0d1117)
 
-`com.dv.adm`
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.dv.adm`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.5.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.5.0)
+
+**🎯 Supported versions:** `14.0.43`
 <!-- HEADER_END -->
 
 ## Features
@@ -28,4 +30,7 @@
 ## Patches
 
 <!-- PATCHES_START -->
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|---|---|---|
+| **Remove ads (ADM)** | Removes the ads in ADM, including Google and AppBrain banners, the red "Disable Ads" menu item, and the Disable Ads and Telegram bars. |  |
 <!-- PATCHES_END -->

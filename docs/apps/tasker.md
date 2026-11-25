@@ -1,9 +1,11 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/net.dinglisch.android.taskerm.png" width="36" height="36" align="top" alt=""> Tasker
 
-**🎯 Supported versions:** `6.7.8`
+![version](https://img.shields.io/badge/version-6.7.8-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-1-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APK-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Overflow%20menu-6e7681?style=for-the-badge&labelColor=0d1117)
 
-`net.dinglisch.android.taskerm`
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`net.dinglisch.android.taskerm`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.5.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.5.0)
+
+**🎯 Supported versions:** `6.7.8`
 <!-- HEADER_END -->
 
 ## Features
@@ -31,4 +33,7 @@ The Tasky beginner screen has no overflow menu; use the long-press shortcut from
 ## Patches
 
 <!-- PATCHES_START -->
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|---|---|---|
+| **Unlock Tasker** | Unlocks all of Tasker's paid features with no trial timer, even offline. Buy Tasker if you rely on it. |  |
 <!-- PATCHES_END -->
