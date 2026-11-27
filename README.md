@@ -74,7 +74,7 @@ for its features, patches and FAQ.
 | <img src="assets/icons/com.Splitwise.SplitwiseMobile.png" width="20" height="20" align="top" alt=""> [**Splitwise**](docs/apps/splitwise.md) | 💎 🚫 🛡️ 🎨 🔑 | 5 | `26.11.1` | **APK** | Account tab |
 | <img src="assets/icons/net.dinglisch.android.taskerm.png" width="20" height="20" align="top" alt=""> [**Tasker**](docs/apps/tasker.md) | 💎 | 1 | `6.7.8` | **APK** | Overflow menu |
 | <img src="assets/icons/com.metalsoft.trackchecker_mobile.png" width="20" height="20" align="top" alt=""> [**TrackChecker**](docs/apps/trackchecker.md) | 🚫 | 1 | `2.30.7` | **APK** | Overflow menu |
-| <img src="assets/icons/com.truecaller.png" width="20" height="20" align="top" alt=""> [**Truecaller**](docs/apps/truecaller.md) | 💎 📵 🔑 | 3 | `26.44.6` | **APKM** | Profile menu · Settings |
+| <img src="assets/icons/com.truecaller.png" width="20" height="20" align="top" alt=""> [**Truecaller**](docs/apps/truecaller.md) | 💎 📵 🔑 | 3 | `26.45.5` | **APKM** | Profile menu · Settings |
 
 ### For any app
 
