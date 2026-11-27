@@ -68,7 +68,7 @@ for its features, patches and FAQ.
 | <img src="assets/icons/idm.internet.download.manager.png" width="20" height="20" align="top" alt=""> [**1DM**](docs/apps/1dm.md) | 🚫 🎨 | 3 | `20.0` | **APKM** | Navigation drawer |
 | <img src="assets/icons/com.dv.adm.png" width="20" height="20" align="top" alt=""> [**ADM**](docs/apps/adm.md) | 🚫 | 1 | `14.0.43` | **APKM** | Overflow menu |
 | <img src="assets/icons/com.cv.docscanner.png" width="20" height="20" align="top" alt=""> [**Doc Scanner**](docs/apps/doc-scanner.md) | 💎 🧹 👯 🔑 | 5 | `6.9.14` | **APKM** | Side menu |
-| <img src="assets/icons/com.google.android.apps.photos.png" width="20" height="20" align="top" alt=""> [**Google Photos**](docs/apps/google-photos.md) | 💾 🔑 👯 | 4 | `8.1.0.1023737660` | **APKM (Android 8+)** | Account menu |
+| <img src="assets/icons/com.google.android.apps.photos.png" width="20" height="20" align="top" alt=""> [**Google Photos**](docs/apps/google-photos.md) | 💾 🔑 👯 | 4 | `8.2.1.1030128190` | **APKM (Android 8+)** | Account menu |
 | <img src="assets/icons/com.linkedin.android.svg" width="20" height="20" align="top" alt=""> [**LinkedIn**](docs/apps/linkedin.md) | 🚫 🛡️ 🎨 ⬇️ 🔑 | 25 | `4.1.1276` | **APK (Android 10+)** | Me panel |
 | <img src="assets/icons/com.mxtech.videoplayer.pro.png" width="20" height="20" align="top" alt=""> [**MX Player Pro**](docs/apps/mx-player-pro.md) | 💎 🎞️ | 3 | `1.93.4` | **APK** | Settings |
 | <img src="assets/icons/com.Splitwise.SplitwiseMobile.png" width="20" height="20" align="top" alt=""> [**Splitwise**](docs/apps/splitwise.md) | 💎 🚫 🛡️ 🎨 🔑 | 5 | `26.11.1` | **APK** | Account tab |
