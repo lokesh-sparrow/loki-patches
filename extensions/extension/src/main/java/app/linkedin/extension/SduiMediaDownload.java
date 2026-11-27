@@ -306,7 +306,7 @@ public final class SduiMediaDownload {
         ImageButton circle = new ImageButton(context);
         circle.setTag(BUTTON_TAG);
         circle.setImageResource(android.R.drawable.stat_sys_download);
-        circle.setContentDescription("Download");
+        circle.setContentDescription(I18n.tr("Download media"));
         GradientDrawable plate = new GradientDrawable();
         plate.setShape(GradientDrawable.OVAL);
         plate.setColor(0x99000000);

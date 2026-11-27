@@ -30,7 +30,7 @@ public final class DownloadMediaPatch {
     private static final int OVERLAY_FILL = 0x80000000;
     private static final int OVAL = GradientDrawable.OVAL;
     private static final int ICON = android.R.drawable.stat_sys_download;
-    private static final String ICON_LABEL = "Download";
+    private static final String ICON_LABEL = "Download media";
     private static final int BUTTON_SIZE = 44;
     private static final int BUTTON_PADDING = 10;
     /** Clear of the viewer's own bar, where its close and overflow buttons sit. */
@@ -102,7 +102,7 @@ public final class DownloadMediaPatch {
 
     private static ImageButton downloadButton(Context context) {
         ImageButton circle = new ImageButton(context);
-        circle.setContentDescription(ICON_LABEL);
+        circle.setContentDescription(I18n.tr(ICON_LABEL));
         circle.setImageResource(ICON);
         circle.setBackground(round(OVERLAY_FILL));
         int padding = px(context, BUTTON_PADDING);
