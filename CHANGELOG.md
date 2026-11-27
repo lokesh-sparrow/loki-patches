@@ -1,7 +1,7 @@
 ## 3.6.0 (2026-11-27)
 
 ### New Features
-- IMO HD joins the bundle - Remove ads (IMO), Allow screenshots, Allow story recording during calls, Allow sending apps, Disappearing messages, Hide Premium on Me page and Hide voice rooms tab.
+- **IMO HD:** IMO HD joins the bundle - Remove ads (IMO), Allow screenshots, Allow story recording during calls, Allow sending apps, Disappearing messages, Hide Premium on Me page, Hide emoji suggestions, Hide voice rooms tab and Spoof signature, so the sign-in code arrives.
 
 ### Fixes
 - Remove ads and trackers now does nothing on apps with their own ad removal (LinkedIn, Splitwise, Truecaller, Doc Scanner, 1DM, ADM, TrackChecker and IMO HD), which it could break if ticked by mistake.
