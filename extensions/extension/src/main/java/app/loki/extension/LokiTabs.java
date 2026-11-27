@@ -41,8 +41,60 @@ public final class LokiTabs {
             // Fall back to what IMO asked for.
         }
         if (view != null) view.setVisibility(wanted);
+        if (view instanceof android.widget.LinearLayout) guardStrip((android.widget.LinearLayout) view);
     }
 
+
+    /**
+     * Keeps IMO's suggestion strip hidden whoever shows it. The strip's own class is rewritten to go through
+     * suggestionVisibility, which also starts watching the strip. IMO's code is not touched beyond that: but IMO's chat screens can also change the strip from outside that class (the field is
+     * public), and which of them runs depends on the phone. So the strip itself is watched: before every frame, if it
+     * is visible while the switch is on, it is hidden again. Never throws.
+     */
+    private static final java.util.WeakHashMap<android.view.View, Boolean> GUARDED = new java.util.WeakHashMap<>();
+
+    private static void guardStrip(final android.widget.LinearLayout strip) {
+        try {
+            if (strip == null) return;
+            synchronized (GUARDED) {
+                if (GUARDED.put(strip, Boolean.TRUE) != null) return;
+            }
+            final android.view.ViewTreeObserver.OnPreDrawListener watcher = new android.view.ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    try {
+                        if (strip.getVisibility() != android.view.View.GONE && LokiSwitches.imoOn(LokiSwitches.IMO_SUGGESTIONS)) {
+                            strip.setVisibility(android.view.View.GONE);
+                            return false;
+                        }
+                    } catch (Throwable ignored) {
+                        // Leave the frame alone.
+                    }
+                    return true;
+                }
+            };
+            watchStrip(strip, watcher);
+            strip.addOnAttachStateChangeListener(new android.view.View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(android.view.View view) {
+                    watchStrip(strip, watcher);
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(android.view.View view) {
+                }
+            });
+        } catch (Throwable ignored) {
+            // The strip stays as IMO draws it.
+        }
+    }
+
+    private static void watchStrip(android.view.View strip, android.view.ViewTreeObserver.OnPreDrawListener watcher) {
+        android.view.ViewTreeObserver observer = strip.getViewTreeObserver();
+        if (!observer.isAlive()) return;
+        observer.removeOnPreDrawListener(watcher);
+        observer.addOnPreDrawListener(watcher);
+    }
 
     public static List<Integer> withoutVoice(List<Integer> tabs) {
         try {
