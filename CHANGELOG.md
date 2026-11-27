@@ -1,3 +1,10 @@
+## 3.6.1 (2026-11-27)
+
+### Fixes
+- **IMO HD:** Hide emoji suggestions now also hides the emoji row on phones where it still showed, such as Samsung foldables.
+
+**62 patches for 11 apps.** Full list in the [README](https://github.com/lokesh-sparrow/loki-patches#apps).
+
 ## 3.6.0 (2026-11-27)
 
 ### New Features
