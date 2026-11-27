@@ -1,9 +1,11 @@
 <!-- HEADER_START -->
 # <img src="../../assets/icons/com.imo.android.imoimhd.png" width="36" height="36" align="top" alt=""> IMO HD
 
-**🎯 Supported versions:** `2026.10.1048`
+![version](https://img.shields.io/badge/version-2026.10.1048-2563eb?style=for-the-badge&labelColor=0d1117) ![patches](https://img.shields.io/badge/patches-9-14b8a6?style=for-the-badge&labelColor=0d1117) ![file](https://img.shields.io/badge/file-APKM-0ea5e9?style=for-the-badge&labelColor=0d1117) ![menu](https://img.shields.io/badge/menu-Settings%20page-6e7681?style=for-the-badge&labelColor=0d1117)
 
-`com.imo.android.imoimhd`
+[← All apps](../../README.md#apps)&nbsp;&nbsp;•&nbsp;&nbsp;`com.imo.android.imoimhd`&nbsp;&nbsp;•&nbsp;&nbsp;[v3.6.0](https://github.com/lokesh-sparrow/loki-patches/releases/tag/v3.6.0)
+
+**🎯 Supported versions:** `2026.10.1048`
 <!-- HEADER_END -->
 
 ## Features
@@ -39,4 +41,15 @@
 ## Patches
 
 <!-- PATCHES_START -->
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|---|---|---|
+| **Allow screenshots (IMO)** | Lets you take screenshots and record the screen everywhere in IMO, including chat media, profile photos, calls and protected chats. |  |
+| **Allow sending apps (IMO)** | Shows the Apps option in the chat attachment menu so you can send an installed app as a file. |  |
+| **Allow story recording during calls (IMO)** | Lets you record and post a story while a call is going on. IMO blocks it by default. |  |
+| **Disappearing messages (IMO)** | Turns on IMO's own disappearing-message option when you send in private and group chats. IMO's servers decide whether the other person gets it. |  |
+| **Hide emoji suggestions (IMO)** | Removes the row of emojis above the chat box in IMO, where one tap sends the emoji straight away. |  |
+| **Hide Premium on Me page (IMO)** | Removes the paid Premium Member entry from the Me page. |  |
+| **Hide voice rooms tab (IMO)** | Removes the voice rooms tab (Room and Explore) from the top bar of IMO, so only Chats and Contacts are left. |  |
+| **Remove ads (IMO)** | Removes the ads in IMO: the opening ad, ads in chats, stories and after a call, and the offer to pay to go ad-free. |  |
+| **Spoof signature (IMO)** | Makes IMO believe it is still the original app after patching, so the phone verification code is sent again and push notifications keep working. Without it the app runs but never receives an SMS. |  |
 <!-- PATCHES_END -->
